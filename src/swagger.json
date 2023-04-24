@@ -1,0 +1,25 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "To do",
+    "termsOfService": "",
+    "contact": {
+      "name": "Team",
+      "url": "",
+      "email": ""
+      },
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:8080/",
+        "description": "URL to test locally"
+      },
+      {
+        "url": "URLDOAWSFUTURO",
+        "description": "URL hosted on AWS Elastic Beanstalk"
+      }
+    ],
+    "paths": {
+    }
+  }
