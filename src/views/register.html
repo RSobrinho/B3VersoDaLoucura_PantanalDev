@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)https://getbootstrap.com/docs/5.2/examples/navbar-fixed/ -->
+<html lang="pt-br" class="h-100">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Eduardo Santos Luz, Jorge Luis Freitas Costa, Rafael Rogado Sobrinho, Ryan Breda Santos"
+    />
+    <title>Registro</title>
+
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.2/examples/navbar-fixed/"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../public/plugins/bootstrap5.3/css/bootstrap.min.css"
+    />
+
+    <!-- Favicons -->
+    <link rel="icon" href="../public/images/logo-b3.png" type="image/png" />
+
+    <link rel="stylesheet" href="../public/css/index.css" />
+    <link rel="stylesheet" href="../public/plugins/fontawesome/css/all.css" />
+  </head>
+  <body class="d-flex flex-column h-100 text-center text-bg-light">
+    <main class="form-signin w-100 m-auto border bg-white">
+      <form class="text-start d-flex flex-column gap-3">
+
+        <div>
+          <a class="navbar-brand d-flex align-items-end justify-content-center" href="index.html">
+            <img
+              class=""
+              src="../public/images/logo-b3.png"
+              alt="logo b3"
+              width="72"
+              height="72"
+            />
+            <span class="fw-bold h3 text-default">Verso</span>
+          </a>
+        </div>
+    
+        <div>
+          <label for="input-name">Nome</label>
+          <input type="email" class="form-control" id="input-name">
+        </div>
+
+        <div>
+          <label for="input-email">E-mail</label>
+          <input type="email" class="form-control" id="input-email" placeholder="name@example.com">
+        </div>
+
+        <div>
+          <label for="input-password">Senha</label>
+          <input type="password" class="form-control" id="input-password">
+        </div>
+
+        <div>
+          <label for="input-password-confirm">Confirme a senha</label>
+          <input type="password" class="form-control" id="input-password-confirm">
+        </div>
+
+        <div>
+          <label for="input-birth">Data de nascimento</label>
+          <input type="date" class="form-control" id="input-birth">
+        </div>
+
+        <button class="w-100 btn btn-default" type="submit">Cadastrar</button>
+
+        <div class="d-flex flex-column gap-1 align-items-center">
+          <a href="login.html" class="text-default">Quero fazer login</a>
+        </div>
+
+      </form>
+
+    <footer class="d-flex justify-content-center fixed-bottom">
+      <p>© 2023 Perpetuos</p>
+    </footer>
+    
+    <script src="../public/plugins/bootstrap5.3/js/bootstrap.bundle.min.js"></script>
+    <script src="../public/plugins/jquery3.6.4/jquery-3.6.4.min.js"></script>
+
+    <script>
+      $(".input-search > input")
+        .on("focus", function () {
+          $(".input-search").addClass("active");
+        })
+        .on("blur", (e) => {
+          $(".input-search").removeClass("active");
+        });
+    </script>
+  </body>
+</html>

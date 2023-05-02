@@ -1,0 +1,38 @@
+.input-search.active {
+  border-color: #08377b !important;
+}
+
+.input-search > input:focus {
+  box-shadow: none;
+}
+
+.text-default {
+  color: #08377b;
+}
+
+.btn-default {
+  background-color: #08377b;
+  color: #fff;
+}
+
+.btn-default:hover {
+  background-color: #0b4eac !important;
+  color: #fffffff3 !important;
+}
+
+.tb-default {
+  max-height: 35rem;
+}
+
+.tb-column-max {
+  max-width: 10rem;
+}
+
+.form-signin {
+  max-width: 425px;
+  padding: 15px;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}

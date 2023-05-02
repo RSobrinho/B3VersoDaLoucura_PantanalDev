@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)https://getbootstrap.com/docs/5.2/examples/navbar-fixed/ -->
+<html lang="pt-br" class="h-100">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Eduardo Santos Luz, Jorge Luis Freitas Costa, Rafael Rogado Sobrinho, Ryan Breda Santos"
+    />
+    <title>Home</title>
+
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.2/examples/navbar-fixed/"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../public/plugins/bootstrap5.3/css/bootstrap.min.css"
+    />
+
+    <!-- Favicons -->
+    <link rel="icon" href="../public/images/logo-b3.png" type="image/png" />
+
+    <link rel="stylesheet" href="../public/css/index.css" />
+    <link rel="stylesheet" href="../public/plugins/fontawesome/css/all.css" />
+  </head>
+  <body class="d-flex flex-column h-100 text-center text-bg-light">
+    <header>
+      <nav class="navbar navbar-expand-md navbar-light">
+        <div class="container-fluid">
+          <a class="navbar-brand d-flex align-items-end" href="index.html">
+            <img
+              class=""
+              src="../public/images/logo-b3.png"
+              alt="logo b3"
+              width="50"
+              height="50"
+            />
+            <span class="fw-bold h3 text-default">Verso</span>
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbar-collapse"
+            aria-controls="navbar-collapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0 h5 fw-normal">
+              <li class="nav-item">
+                <a
+                  class="nav-link text-default"
+                  aria-current="page"
+                  href="index.html"
+                  >Buscar</a
+                >
+              </li>
+
+              <li class="nav-item">
+                <a
+                  class="nav-link active text-default"
+                  aria-current="page"
+                  href="assessment.html"
+                  >Avaliações</a
+                >
+              </li>
+              <!-- <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Avaliações
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="#">Todas Avaliações</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">Suas Avaliações</a>
+                  </li>
+                </ul>
+              </li> -->
+            </ul>
+
+            <div class="px-3">
+              <div class="dropdown">
+                <a
+                  href="#"
+                  data-bs-toggle="dropdown"
+                  data-bs-display="static"
+                  aria-expanded="false"
+                  class="text-decoration-none text-default h4"
+                >
+                  <i class="fad fa-user"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li>
+                    <a class="dropdown-item" href="#">Perfil</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="login.html">Login</a>
+                  </li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <a class="dropdown-item text-danger" href="#"
+                      ><i class="fal fa-sign-out-alt"></i> Sair</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="px-3 h-100">
+      <div
+        class="d-flex flex-column justify-content-center align-items-center h-100"
+      >
+        <h1 class="fw-medium fst-italic" style="font-size: 3rem">
+          Avalie uma notícia
+        </h1>
+        <p class="lead">
+          Insira um link abaixo de uma notícia para avaliar seu sentimento e
+          impacto em relação a B3
+        </p>
+        <form class="row justify-content-center align-items-center w-100 py-3">
+          <div class="col-12 col-lg-8">
+            <div
+              class="input-search input-group input-group-lg border rounded-5 p-1 px-2 bg-white"
+            >
+              <input
+                type="text"
+                class="form-control border-0"
+                placeholder="Coloque o link da notícia que deseja avaliar..."
+              />
+              <button
+                type="button"
+                class="input-group-text border-0 bg-transparent"
+                data-bs-toggle="modal"
+                data-bs-target="#modal-assessment"
+              >
+                <i class="fas fa-search text-default"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+        <p class="lead">Últimas avaliações</p>
+        <p class="lead d-flex gap-3 justify-content-center">
+          <a href="#" class="text-decoration-none h3 fw-light text-dark">
+            <i class="fas fa-circle text-success"></i>
+            <span>50</span>
+          </a>
+          <a href="#" class="text-decoration-none h3 fw-light text-dark">
+            <i class="fas fa-circle text-danger"></i>
+            <span>10</span>
+          </a>
+          <a href="#" class="text-decoration-none h3 fw-light text-dark">
+            <i class="fas fa-circle text-warning"></i>
+            <span>5</span>
+          </a>
+        </p>
+      </div>
+    </main>
+
+    <footer class="d-flex justify-content-center">
+      <p>© 2023 Perpetuos</p>
+    </footer>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="modal-assessment"
+      tabindex="-1"
+      aria-labelledby="modal-assessment"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5" id="title-modal-assessment">
+              Avaliação da Notícia
+            </h2>
+            <!-- <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button> -->
+          </div>
+          <div class="modal-body row text-start">
+            <div class="col-12">
+              <label class="h4">Título</label>
+              <p>Titulo importante para a noticia</p>
+            </div>
+            <div class="col-12">
+              <label class="h4">Conteúdo</label>
+              <p
+                id="content-file"
+                class="overflow-x-auto"
+                style="max-height: 15vw"
+              >
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel
+                ducimus veritatis ipsum explicabo officiis fuga beatae eos,
+                ullam maiores dignissimos sequi tempore, quas cum? Quaerat
+                provident distinctio soluta tempora fugit. Lorem ipsum dolor
+                sit, amet consectetur adipisicing elit. Vel ducimus veritatis
+                ipsum explicabo officiis fuga beatae eos, ullam maiores
+                dignissimos sequi tempore, quas cum? Quaerat provident
+                distinctio soluta tempora fugit. Lorem ipsum dolor sit, amet
+                consectetur adipisicing elit. Vel ducimus veritatis ipsum
+                explicabo officiis fuga beatae eos, ullam maiores dignissimos
+                sequi tempore, quas cum? Quaerat provident distinctio soluta
+                tempora fugit. Lorem ipsum dolor sit, amet consectetur
+                adipisicing elit. Vel ducimus veritatis ipsum explicabo officiis
+                fuga beatae eos, ullam maiores dignissimos sequi tempore, quas
+                cum? Quaerat provident distinctio soluta tempora fugit. Lorem
+                ipsum dolor sit, amet consectetur adipisicing elit. Vel ducimus
+                veritatis ipsum explicabo officiis fuga beatae eos, ullam
+                maiores dignissimos sequi tempore, quas cum? Quaerat provident
+                distinctio soluta tempora fugit. Quaerat provident distinctio
+                soluta tempora fugit. Lorem ipsum dolor sit, amet consectetur
+                adipisicing elit. Vel ducimus veritatis ipsum explicabo officiis
+                fuga beatae eos, ullam maiores dignissimos sequi tempore, quas
+                cum? Quaerat provident distinctio soluta tempora fugit. Quaerat
+                provident distinctio soluta tempora fugit. Lorem ipsum dolor
+                sit, amet consectetur adipisicing elit. Vel ducimus veritatis
+                ipsum explicabo officiis fuga beatae eos, ullam maiores
+                dignissimos sequi tempore, quas cum? Quaerat provident
+                distinctio soluta tempora fugit. Quaerat provident distinctio
+                soluta tempora fugit. Lorem ipsum dolor sit, amet consectetur
+                adipisicing elit. Vel ducimus veritatis ipsum explicabo officiis
+                fuga beatae eos, ullam maiores dignissimos sequi tempore, quas
+                cum? Quaerat provident distinctio soluta tempora fugit. Quaerat
+                provident distinctio soluta tempora fugit. Lorem ipsum dolor
+                sit, amet consectetur adipisicing elit. Vel ducimus veritatis
+                ipsum explicabo officiis fuga beatae eos, ullam maiores
+                dignissimos sequi tempore, quas cum? Quaerat provident
+                distinctio soluta tempora fugit. Quaerat provident distinctio
+                soluta tempora fugit. Lorem ipsum dolor sit, amet consectetur
+                adipisicing elit. Vel ducimus veritatis ipsum explicabo officiis
+                fuga beatae eos, ullam maiores dignissimos sequi tempore, quas
+                cum? Quaerat provident distinctio soluta tempora fugit.
+              </p>
+            </div>
+            <div class="col-12 h4 d-flex align-items-center gap-3">
+              <label
+                >Data notícia:
+                <span class="fw-normal">01/05/2023</span>
+              </label>
+              <label
+                >Data avaliação:
+                <span class="fw-normal">01/05/2023</span>
+              </label>
+            </div>
+            <div class="col-12">
+              <label class="h4">Impacto</label>
+              <div class="d-flex gap-2 align-items-center">
+                <a href="#" class="text-decoration-none h5 fw-medium text-dark">
+                  <i class="fas fa-circle text-success"></i>
+                  <span>50% Positivo</span>
+                </a>
+                <a href="#" class="text-decoration-none h5 fw-medium text-dark">
+                  <i class="fas fa-circle text-danger"></i>
+                  <span>10% Negativo</span>
+                </a>
+                <a href="#" class="text-decoration-none h5 fw-medium text-dark">
+                  <i class="fas fa-circle text-warning"></i>
+                  <span>5% Neutro</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="modal-footer d-flex align-items-center justify-content-between"
+          >
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              data-bs-dismiss="modal"
+            >
+              Fechar
+            </button>
+            <a href="#" class="btn btn-outline-primary" target="_blank"
+              >Acessar noticia <i class="fad fa-link"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../public/plugins/bootstrap5.3/js/bootstrap.bundle.min.js"></script>
+    <script src="../public/plugins/jquery3.6.4/jquery-3.6.4.min.js"></script>
+
+    <script>
+      $(".input-search > input")
+        .on("focus", function () {
+          $(".input-search").addClass("active");
+        })
+        .on("blur", (e) => {
+          $(".input-search").removeClass("active");
+        });
+    </script>
+  </body>
+</html>
