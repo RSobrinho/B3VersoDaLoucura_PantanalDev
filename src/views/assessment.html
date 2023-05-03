@@ -105,7 +105,16 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                   <li>
-                    <a class="dropdown-item" href="#">Perfil</a>
+                    <a
+                      class="dropdown-item"
+                      href="#"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modal-user-perfil"
+                      >Perfil</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="login.html">Login</a>
                   </li>
                   <li><hr class="dropdown-divider" /></li>
                   <li>
@@ -125,10 +134,72 @@
       <div class="text-start">
         <div class="d-flex align-items-center justify-content-between">
           <h1 class="fw-normal h2">Avaliações</h1>
-          <a href="#" class="text-decoration-none text-dark fw-medium">
-            Filtrar
-            <i class="fal fa-filter"></i>
-          </a>
+          <div class="d-flex align-items-center justify-content-between gap-3">
+            <div class="dropdown">
+              <a
+                href="#"
+                data-bs-toggle="dropdown"
+                data-bs-display="static"
+                aria-expanded="false"
+                class="text-decoration-none text-dark fw-medium"
+              >
+                Filtro
+                <i class="fal fa-filter"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <a class="dropdown-item active" data-filter="0" href="#"
+                    >Todas Avaliações</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" data-filter="1" href="#"
+                    >Avaliações de hoje</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" data-filter="2" href="#"
+                    >Minhas Avaliações</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div class="dropdown">
+              <a
+                href="#"
+                data-bs-toggle="dropdown"
+                data-bs-display="static"
+                aria-expanded="false"
+                class="text-decoration-none text-dark fw-medium"
+              >
+                Impacto
+                <i class="fad fa-circle"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <a class="dropdown-item active" data-filter="0" href="#"
+                    >Todos</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" data-filter="1" href="#"
+                    ><i class="fas fa-circle text-success"></i> Positivo</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" data-filter="2" href="#"
+                    ><i class="fas fa-circle text-danger"></i> Negativo</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" data-filter="3" href="#"
+                    ><i class="fas fa-circle text-warning"></i> Neutro</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         <div class="table-responsive tb-default py-2">
