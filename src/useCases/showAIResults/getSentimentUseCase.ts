@@ -1,6 +1,3 @@
-// // import { CarEntity } from '../../../entities/implementations/car'
-// // import { ValidationError } from '../../../errors/validationError'
-// // import { ICarRepository } from '../../../repositories/interfaces/iCarRepository'
 // export class GetSentimentUseCase {
 //   constructor (private robertaTrainedAIProvider: any) {}
 
