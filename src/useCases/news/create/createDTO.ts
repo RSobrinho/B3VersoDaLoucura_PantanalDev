@@ -1,15 +1,16 @@
 export interface CreateDTO {
   automatic?: {
-    link: string
-  },
+    link: string;
+  };
   manual?: {
-    title: string,
-    description: string,
-    date: string,
+    title: string;
+    description: string;
+    date: string;
+    link: string;
     sentiment: {
-      positive: number,
-      neutral: number,
-      negative: number
-    }
-  }
+      positive: number;
+      neutral: number;
+      negative: number;
+    };
+  };
 }
