@@ -9,4 +9,5 @@ export interface INewsRepository {
     props: { page?: number; limit?: number } & INewsEntityProps
   ): Promise<object>;
   findAll(): Promise<INewsEntityProps[]>;
+  find(data?: {}): Promise<INewsEntityProps[]>;
 }
