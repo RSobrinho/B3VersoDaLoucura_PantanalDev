@@ -2,6 +2,7 @@ import express from "express";
 import swaggerUi from "swagger-ui-express";
 import swaggerDocs from "./swagger.json";
 import BaseRouter from "./routes/baseRouter";
+import ScrapingRouter from "./routes/scrapingRouter";
 import NewsRouter from "./routes/newsRouter";
 import UserRouter from "./routes/userRouter";
 import mongoose from "mongoose";
@@ -56,6 +57,7 @@ class App {
   private routes() {
     // this.express.use('/', BaseRouter);
     this.express.use(`${this.apiRoute}/news`, NewsRouter);
+    this.express.use(`${this.apiRoute}/scraping`, ScrapingRouter);
     this.express.use(`${this.apiRoute}/users`, UserRouter);
   }
 }
