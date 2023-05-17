@@ -12,6 +12,15 @@ export class MongoDBScrapingRepository implements IScrapingRepository {
     return await ScrapingSchema.findOne(props).select("-__v").lean();
   }
 
+  async findByDataReverse(
+    props: IScrapingEntityProps
+  ): Promise<IScrapingEntityProps> {
+    return await ScrapingSchema.findOne(props)
+      .sort({ updated_at: -1 })
+      .select("-__v")
+      .lean();
+  }
+
   async findAll(): Promise<IScrapingEntityProps[]> {
     return await ScrapingSchema.find({});
   }

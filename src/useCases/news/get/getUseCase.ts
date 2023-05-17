@@ -2,6 +2,7 @@ import { INewsRepository } from "../../../repositories/interfaces/iNewsRepositor
 import { NotFoundError } from "../../../errors/notFoundError";
 import { GetDTO } from "./getDTO";
 import { INewsEntityProps } from "entities/interfaces/iNewsEntityProps";
+import { getCleanLink } from "../../../utils/Scraping";
 import moment from "moment";
 
 export class GetUseCase {
@@ -18,14 +19,7 @@ export class GetUseCase {
     }
 
     if (params.link) {
-      let link = params.link.toString().split("?");
-      link = link[0];
-
-      if (link.substr(-1, 1) == "/") {
-        link = link.substr(0, link.length - 1);
-      }
-
-      params.link = link;
+      params.link = getCleanLink(params.link);
     }
 
     if (params.sentiment && +params.sentiment >= 0 && +params.sentiment <= 2) {
@@ -53,7 +47,7 @@ export class GetUseCase {
     const searchFields: { [k: string]: string | object | number } =
       Object.fromEntries(filterFields);
 
-    console.log(searchFields);
+    // console.log(searchFields);
 
     const news = await this.newsRepository.find(searchFields);
 

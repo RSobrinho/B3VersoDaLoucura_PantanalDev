@@ -11,19 +11,11 @@ export class CreateController {
       link: req.body.link || null,
     };
 
-    let scraping = {};
-
-    if (params.link) {
-      // Fazer scraping direto do link
-    } else if ((params.initial_date, params.final_date)) {
-      // Fazer scraping das news pelas datas e depois o direto pelos links
-      scraping = await this.createUseCase.execute({
-        initial_date: params.initial_date,
-        final_date: params.final_date,
-      });
-    } else {
-      throw new ValidationError("Nenhum parametro válido foi informado!");
-    }
+    const scraping = await this.createUseCase.execute({
+      initial_date: params.initial_date,
+      final_date: params.final_date,
+      link: params.link,
+    });
 
     return res.status(201).json({
       status: "Success",

@@ -3,6 +3,7 @@ import { IScrapingEntityProps } from "../../entities/interfaces/iScrapingEntityP
 export interface IScrapingRepository {
   save(news: IScrapingEntityProps): Promise<void>;
   findByData(data: IScrapingEntityProps): Promise<IScrapingEntityProps>;
+  findByDataReverse(data: IScrapingEntityProps): Promise<IScrapingEntityProps>;
   deleteById(id: string): Promise<boolean>;
   updateById({ _id, ...props }: IScrapingEntityProps): Promise<object>;
   findByFilter(

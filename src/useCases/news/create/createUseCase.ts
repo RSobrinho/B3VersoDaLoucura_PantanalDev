@@ -2,6 +2,8 @@ import { AlreadyOnBaseError } from "../../../errors/alreadyOnBaseError";
 import { NewsEntity } from "../../../entities/implementations/news";
 import { INewsRepository } from "../../../repositories/interfaces/iNewsRepository";
 import { CreateDTO } from "./createDTO";
+import { getCleanLink } from "../../../utils/Scraping";
+
 export class CreateUseCase {
   constructor(private newsRepository: INewsRepository) {}
 
@@ -12,10 +14,10 @@ export class CreateUseCase {
       title,
       description,
       date,
-      link,
+      link: getCleanLink(link),
       sentiment,
     });
-    if (await this.newsRepository.findByData({ link })) {
+    if (await this.newsRepository.findByData({ link: newNews.link })) {
       throw new AlreadyOnBaseError("news");
     } else {
       await this.newsRepository.save(newNews);
