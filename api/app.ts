@@ -34,7 +34,7 @@ class App {
   private middlewares() {
     this.express.use(express.json());
     // this.express.use(express.static(join(__dirname, "views")));
-    this.express.use(cors());
+    // this.express.use(cors());
     this.express.use(
       "/api/v1/api-docs",
       swaggerUi.serve,

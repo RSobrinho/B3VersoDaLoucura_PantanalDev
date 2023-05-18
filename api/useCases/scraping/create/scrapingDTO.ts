@@ -3,5 +3,5 @@ export interface ScrapingDTO {
   date?: string;
   link: string;
   content?: string;
-  sentiment?: string;
+  sentiment?: number;
 }

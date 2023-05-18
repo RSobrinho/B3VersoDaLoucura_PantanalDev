@@ -9,6 +9,7 @@ import { ScrapingDTO } from "./scrapingDTO";
 import { getCleanLink, getDateFormat } from "../../../utils/Scraping";
 import { ScrapingNews } from "./scrapingNews";
 import { ScrapingGoogleNews } from "./scrapingGoogleNews";
+import { ClassifyAI } from "./classifyAI";
 
 export class CreateUseCase {
   constructor(
@@ -18,6 +19,7 @@ export class CreateUseCase {
 
   async execute(params: CreateDTO): Promise<CreateDTO> {
     const res = params;
+    const AI = new ClassifyAI();
 
     if (params.link) {
       // Fazer scraping direto do link
@@ -67,11 +69,24 @@ export class CreateUseCase {
       );
 
       // Classificar na IA
+      // let counter = 0;
+      // const titles: string[] = [];
+      // news.map((nw) => {
+      //   titles.push(nw.title);
+      // });
+
+      // const cl = await AI.execute({
+      //   texts: titles,
+      // });
+      // console.log(cl);
 
       // Passa por cada noticia do google e salva
       news.map(async (nw) => {
+        // nw.sentiment = cl[counter];
         const saveNews = await this.scrapingSaveNews(nw);
+
         if (!saveNews) ct++;
+        // counter++;
       });
 
       // Fazer scraping das news pelas datas e depois o direto pelos links
@@ -108,18 +123,26 @@ export class CreateUseCase {
     const scrap = new ScrapingNews();
     const res = await scrap.execute(params);
 
-    // Classificar na IA
+    if (!params.sentiment) {
+      const AI = new ClassifyAI();
+      const cl = await AI.execute({
+        texts: [res.title],
+      });
+      console.log(cl);
+      params.sentiment = cl[0] || 1;
+    }
+
+    // Classificar sentimento
     const sentiment = {
-      positive: 0,
-      neutral: 0,
       negative: 0,
+      neutral: 0,
+      positive: 0,
     };
 
     let ct = 0;
-    const rand = Math.floor(Math.random() * 2);
 
     for (let i in sentiment) {
-      if (ct == rand) {
+      if (ct == params.sentiment) {
         sentiment[i] = 100;
       }
       ct++;

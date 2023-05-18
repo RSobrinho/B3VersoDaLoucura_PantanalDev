@@ -64,7 +64,10 @@ export class ScrapingGoogleNews {
               let date = "";
 
               if (titleElement.length) {
-                title = titleElement.text().replace(";", ",");
+                title = titleElement
+                  .text()
+                  .replace(";", ",")
+                  .replace("...", "");
               }
               if (descElement.length) {
                 desc = descElement.text().replace(";", ",");
