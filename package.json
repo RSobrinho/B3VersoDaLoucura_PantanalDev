@@ -4,8 +4,9 @@
   "description": "A fazer",
   "main": ".eslintrc.js",
   "scripts": {
-    "start": "node ./dist/src/server.js",
-    "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts",
+    "start": "node ./dist/api/server.js",
+    "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules api/server.ts",
+    "client": "cd frontend && npm start",
     "build": "tsc",
     "test": "vitest",
     "coverage": "vitest --coverage"

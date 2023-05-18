@@ -22,11 +22,21 @@ export class CreateUseCase {
     if (params.link) {
       // Fazer scraping direto do link
       const news = await this.scrapingSaveNews({ link: params.link });
+
+      if (!news) {
+        throw new ValidationError(
+          "Não foi possivel fazer o scraping desse link!"
+        );
+      }
+
       res.news = news;
+      res.accepted_total = 1;
+      res.rejected_total = 0;
     } else if (params.initial_date && params.final_date) {
       const initial_date = getDateFormat(params.initial_date);
       const final_date = getDateFormat(params.final_date);
       const updated_at = new Date().toISOString();
+      let ct = 0;
 
       if (new Date(final_date) > new Date()) {
         throw new ValidationError(
@@ -56,9 +66,12 @@ export class CreateUseCase {
         new Date(final_date)
       );
 
+      // Classificar na IA
+
       // Passa por cada noticia do google e salva
       news.map(async (nw) => {
-        await this.scrapingSaveNews(nw);
+        const saveNews = await this.scrapingSaveNews(nw);
+        if (!saveNews) ct++;
       });
 
       // Fazer scraping das news pelas datas e depois o direto pelos links
@@ -82,20 +95,11 @@ export class CreateUseCase {
 
       res.link = `/news?initial_date=${initial_date}&final_date=${final_date}`;
       res.news = null;
+      res.accepted_total = news.length;
+      res.rejected_total = ct;
     } else {
       throw new ValidationError("Nenhum parametro válido foi informado!");
     }
-
-    // 1 - webscraping 1 processo
-
-    // 2 - webscraping 2 processo
-    // 2.1 - fazer a avaliação da noticia
-    // 2.2 - salvar cada noticia avaliada
-
-    // 3 - salvar scraping
-    // else {
-    //   await this.scrapingRepository.save(newScraping);
-    // }
 
     return res;
   }
@@ -105,7 +109,6 @@ export class CreateUseCase {
     const res = await scrap.execute(params);
 
     // Classificar na IA
-
     const sentiment = {
       positive: 0,
       neutral: 0,

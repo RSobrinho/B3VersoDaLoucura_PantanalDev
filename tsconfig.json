@@ -1,21 +1,19 @@
 {
   "compilerOptions": {
-    "target": "ES6",                                  
-    "module": "commonjs",                                
+    "target": "ES6",
+    "module": "commonjs",
     "outDir": "./dist",
     "sourceMap": true,
-    "rootDir": "./",                                  
-    "moduleResolution": "node",                       
-    "baseUrl": "./src",                                 
-    "resolveJsonModule": true,                      
-    "esModuleInterop": true,                             
-    "forceConsistentCasingInFileNames": true,            
+    "rootDir": "./",
+    "moduleResolution": "node",
+    "baseUrl": "./api",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "allowJs": true,
-    "strict": false, 
+    "strict": false,
     "skipLibCheck": true,
-    "experimentalDecorators": true,
+    "experimentalDecorators": true
   },
-  "include": [
-    "src/**/*.ts"
-  ]
+  "include": ["api/**/*.ts"]
 }

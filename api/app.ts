@@ -9,6 +9,7 @@ import mongoose from "mongoose";
 import { errorResponse } from "./errors/handler";
 import { config } from "dotenv";
 import { join } from "path";
+import cors from "cors";
 
 class App {
   public apiRoute = "/api/v1";
@@ -32,7 +33,8 @@ class App {
 
   private middlewares() {
     this.express.use(express.json());
-    this.express.use(express.static(join(__dirname, "views")));
+    // this.express.use(express.static(join(__dirname, "views")));
+    this.express.use(cors());
     this.express.use(
       "/api/v1/api-docs",
       swaggerUi.serve,

@@ -1,7 +1,8 @@
-import app from './app';
+import app from "./app";
 
 // import io from 'socket.io'
 const port = process.env.PORT ? Number(process.env.PORT) : 8080;
+
 app.listen(port, () => {
   console.log(`Listening on ${port}`);
 });
