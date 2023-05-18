@@ -18,6 +18,8 @@ export class CreateUseCase {
   ) {}
 
   async execute(params: CreateDTO): Promise<CreateDTO> {
+    const limit = 5;
+    const hours = 1;
     const res = params;
     const AI = new ClassifyAI();
 
@@ -47,7 +49,7 @@ export class CreateUseCase {
       }
 
       const date_limit = new Date(updated_at);
-      date_limit.setHours(date_limit.getHours() - 2);
+      date_limit.setHours(date_limit.getHours() - hours);
 
       const limit_date = {
         $gte: date_limit,
@@ -56,9 +58,9 @@ export class CreateUseCase {
         updated_at: limit_date,
       });
 
-      if (limitScrap.length >= 3) {
+      if (limitScrap.length >= 5) {
         throw new ValidationError(
-          "Limite alcançado! Você já executou 3 scraping por data dentro de 2 horas, por favor aguarde passar esse tempo para executar novamente!"
+          `Limite alcançado! Você já executou ${limit} scraping por data dentro de ${hours} horas, por favor aguarde passar esse tempo para executar novamente!`
         );
       }
 
@@ -124,12 +126,13 @@ export class CreateUseCase {
     const res = await scrap.execute(params);
 
     if (!params.sentiment) {
+      const ti = res?.title || params?.title;
       const AI = new ClassifyAI();
       const cl = await AI.execute({
-        texts: [res.title],
+        texts: [ti],
       });
-      console.log(cl);
-      params.sentiment = cl[0] || 1;
+      params.sentiment =
+        cl[0] || (!cl[0] && cl[0].toString() == "0") ? cl[0] : 1;
     }
 
     // Classificar sentimento

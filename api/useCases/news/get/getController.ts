@@ -18,6 +18,10 @@ export class GetController {
 
     return res
       .status(200)
-      .json({ status: "Success", message: "News data got successfully", news });
+      .json({
+        status: "Success",
+        message: "News data got successfully",
+        ...news,
+      });
   }
 }
