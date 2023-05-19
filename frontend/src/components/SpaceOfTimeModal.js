@@ -15,7 +15,8 @@ const TempModal = (props) => {
   };
 
   const handleButtonClick = () => {
-    // Perform any desired action with the selected dates
+    props.switch(1);
+    location.href = "#assessments?initial_date=" + startDate.toString() + "&final_date=" + endDate.toString();
     console.log("Start Date:", startDate);
     console.log("End Date:", endDate);
   };
@@ -74,7 +75,7 @@ const TempModal = (props) => {
               <div className="col-12 text-center">
                 <button
                   className="btn btn-primary my-3"
-                  onClick={() => props.switch(1)}
+                  onClick={handleButtonClick}
                   data-bs-dismiss="modal"
                 >
                   Adquirir Notícias
