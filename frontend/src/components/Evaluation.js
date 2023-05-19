@@ -1,13 +1,12 @@
 import React from "react";
 import GraphModal from "./GraphModal";
 import SpaceOfTimeModal from "./SpaceOfTimeModal";
-import useFetch from "./useFetch";
 import getNews from "./getNews";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import env from "react-dotenv";
 
-export default () => {
+export default (props) => {
   const url = `${env.URL_BACK}:${env.PORT_BACK}/api/v1/news`;
 
   if (url) {
