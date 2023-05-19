@@ -12,19 +12,10 @@ function Main(props) {
   // Data share variable
   const [res, setRes] = useState(null);
 
-  // Data share variable
-  const [res, setRes] = useState(null);
-
   function configurePage(page) {
     switch (page) {
       case 1:
-        return (
-          <Evaluation
-            res={res}
-            modRes={(data) => setRes(data)}
-            switch={(num) => setPage(num)}
-          />
-        );
+        return <Evaluation res={res} modRes={(data) => setRes(data)} />;
 
       default:
         return <Search />;
