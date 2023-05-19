@@ -4,7 +4,7 @@ import NewsRouter from "./routes/newsRouter";
 import mongoose from "mongoose";
 import { errorResponse } from "./errors/handler";
 import { config } from "dotenv";
-
+import cors from "cors"
 class App {
   public apiRoute = "/api/v1";
   public express: express.Application;
@@ -20,8 +20,10 @@ class App {
   }
 
 
+
   private middlewares() {
     this.express.use(express.json());
+    this.express.use(cors());
   }
 
   private database() {
