@@ -80,7 +80,6 @@ export class CreateUseCase {
       // const cl = await AI.execute({
       //   texts: titles,
       // });
-      // console.log(cl);
 
       // Passa por cada noticia do google e salva
       news.map(async (nw) => {
@@ -128,11 +127,13 @@ export class CreateUseCase {
     if (!params.sentiment) {
       const ti = res?.title || params?.title;
       const AI = new ClassifyAI();
+      
       const cl = await AI.execute({
         texts: [ti],
       });
 
       params.sentiment = cl !== null && cl.length > 0 ? cl[0] : 1;
+      
     }
 
     // Classificar sentimento

@@ -17,7 +17,7 @@ root.render(
     <Main page={pg} />
     <NewsModal />
     <Footer />
-    <SpaceOfTimeModal />
+    <SpaceOfTimeModal page={1}/>
   </React.StrictMode>
 );
 

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { alterPage } from "./page";
 
-const TempModal = () => {
+const TempModal = (props) => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [page, setPage] = React.useState(props.page);
 
   const handleStartDateChange = (event) => {
     setStartDate(event.target.value);
@@ -72,7 +74,8 @@ const TempModal = () => {
               <div className="col-12 text-center">
                 <button
                   className="btn btn-primary my-3"
-                  onClick={handleButtonClick}
+                  onClick={() => props.switch(1)}
+                  data-bs-dismiss="modal"
                 >
                   Adquirir Notícias
                 </button>
