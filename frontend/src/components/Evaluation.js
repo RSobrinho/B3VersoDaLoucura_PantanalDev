@@ -1,6 +1,7 @@
 import React from "react";
 import GraphModal from "./GraphModal";
 import SpaceOfTimeModal from "./SpaceOfTimeModal";
+import NewsTable from "./NewsTable";
 import useFetch from "./useFetch";
 import getNews from "./getNews";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -8,25 +9,8 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import env from "react-dotenv";
 
 export default () => {
-  const url = `${env.URL_BACK}:${env.PORT_BACK}/api/v1/news`;
-
-  if (url) {
-    const { data, loading, error } = getNews(url);
-
-    if (loading) {
-      return (
-        <h1>
-          <div className="spinner-border" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-        </h1>
-      );
-    }
-    if (error) console.log(error);
-  }
-
   return (
-    <div className="text-start">
+    <div className="text-center">
       <div className="d-flex align-items-center justify-content-between">
         <h1 className="fw-normal h2">Avaliações</h1>
         <div className="d-flex align-items-center justify-content-center gap-2 h5 fw-italic">
@@ -66,40 +50,6 @@ export default () => {
             </Dropdown.Menu>
           </Dropdown>
 
-          {/* <div className="dropdown">
-            <button
-              type="button"
-              className="btn btn-primary"
-              data-bs-toggle="dropdown"
-              data-bs-display="static"
-              aria-expanded="false"
-            >
-              <i className="fal fa-filter"></i>
-            </button>
-            <ul className="dropdown-menu dropdown-menu-end">
-              <li>
-                <a className="dropdown-item active" data-filter="0" href="#">
-                  Todos
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" data-filter="1" href="#">
-                  <i className="fas fa-circle text-success"></i> Positivo
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" data-filter="2" href="#">
-                  <i className="fas fa-circle text-danger"></i> Negativo
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" data-filter="3" href="#">
-                  <i className="fas fa-circle text-warning"></i> Neutro
-                </a>
-              </li>
-            </ul>
-          </div> */}
-
           <button
             type="button"
             className="btn btn-primary"
@@ -120,34 +70,7 @@ export default () => {
         </div>
       </div>
 
-      <div className="table-responsive tb-default py-2">
-        <table className="table table-striped align-middle">
-          <tbody>
-            <tr>
-              <th className="text-truncate tb-column-max">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis,
-                non. Dolores, iusto reiciendis necessitatibus culpa voluptatibus
-                quidem laborum unde amet in eveniet adipisci, voluptates
-                similique molestiae. Vero impedit hic iusto?
-              </th>
-              <td className="text-end">
-                <a
-                  href="#"
-                  className="text-dark fst-italic h5"
-                  data-bs-toggle="modal"
-                  data-bs-target="#news-modal"
-                >
-                  Acessar
-                </a>
-              </td>
-              <td className="h3" style={{ width: "1rem" }}>
-                <i className="fas fa-circle text-success"></i>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
+      <NewsTable />
       {/* <GraphModal title={data?.title} txt={data?.body} /> */}
     </div>
   );

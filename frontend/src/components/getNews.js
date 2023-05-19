@@ -5,15 +5,13 @@ function getNews(url) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  console.log(url);
 
   useEffect(() => {
     setLoading(true);
     axios
       .get(url)
       .then((response) => {
-        console.log(response);
-        setData("");
+        setData(response.data);
       })
       .catch((err) => {
         setError(err);
