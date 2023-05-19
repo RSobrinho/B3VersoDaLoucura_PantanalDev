@@ -15,7 +15,7 @@ const TempModal = (props) => {
   };
 
   const handleButtonClick = () => {
-    () => props.switch(1);
+    props.switch(1);
     location.href =
       "#assessments?initial_date=" +
       startDate.toString() +

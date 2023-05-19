@@ -34,6 +34,6 @@ module.exports = {
     "react/display-name": "off",
     "react/prop-types": "off",
     "react/no-unescaped-entities": "off",
-    "prefer-destructuring": ["error", { object: true, array: false }],
+    "prefer-destructuring": "off",
   },
 };

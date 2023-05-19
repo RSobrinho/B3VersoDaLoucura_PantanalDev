@@ -3,7 +3,7 @@ import Evaluation from "./Evaluation";
 import Header from "./Header";
 import Search from "./Search";
 import { getPage } from "./page";
-import SpaceOfTimeModal from "./SpaceOfTimeModal"
+import SpaceOfTimeModal from "./SpaceOfTimeModal";
 import "../public/fontawesome/css/all.css";
 
 function Main(props) {
@@ -12,7 +12,7 @@ function Main(props) {
   function configurePage(page) {
     switch (page) {
       case 1:
-        return <Evaluation />;
+        return <Evaluation switch={(num) => setPage(num)} />;
 
       default:
         return <Search />;
@@ -23,11 +23,10 @@ function Main(props) {
     <>
       <Header switch={(num) => setPage(num)} />
 
-      <SpaceOfTimeModal switch={(num) => setPage(num)}/>
+      <SpaceOfTimeModal switch={(num) => setPage(num)} />
 
       <main className="px-3 h-100">{configurePage(page)}</main>
     </>
-
   );
 }
 
