@@ -75,6 +75,7 @@ const TempModal = (props) => {
                 <button
                   className="btn btn-primary my-3"
                   onClick={() => props.switch(1)}
+                  data-bs-dismiss="modal"
                 >
                   Adquirir Notícias
                 </button>
