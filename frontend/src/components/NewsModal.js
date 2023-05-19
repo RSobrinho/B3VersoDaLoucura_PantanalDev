@@ -1,31 +1,38 @@
 import React from "react";
+import Search from "./Search";
 
 export default () => {
   return (
     <React.Fragment>
       <div
         className="modal fade"
-        id="modal-assessment"
+        id="news-modal"
         tabIndex="-1"
-        aria-labelledby="modal-assessment"
+        aria-labelledby="news-modal"
         aria-hidden="true"
       >
         <div className="modal-dialog modal-dialog-centered modal-lg">
           <div className="modal-content">
             <div className="modal-header">
-              <h2 className="modal-title fs-5" id="title-modal-assessment">
+              <h2 className="modal-title fs-5" id="title-news-modal">
                 Avaliação da Notícia
               </h2>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
             <div className="modal-body row text-start">
               <div className="col-12">
                 <label className="h4">Título</label>
-                <p>Titulo importante para a noticia</p>
+                <p id="title-news">Titulo importante para a noticia</p>
               </div>
               <div className="col-12">
                 <label className="h4">Conteúdo</label>
                 <p
-                  id="content-file"
+                  id="content-news"
                   className="overflow-x-auto"
                   style={{ maxHeight: "15vw" }}
                 >
@@ -76,36 +83,18 @@ export default () => {
               <div className="col-12 h4 d-flex align-items-center gap-3">
                 <label>
                   Data notícia:
-                  <span className="fw-normal">01/05/2023</span>
-                </label>
-                <label>
-                  Data avaliação:
-                  <span className="fw-normal">01/05/2023</span>
+                  <span id="date-news" className="fw-normal">01/05/2023</span>
                 </label>
               </div>
               <div className="col-12">
-                <label className="h4">Impacto</label>
+                <label className="h4">Sentimento</label>
                 <div className="d-flex gap-2 align-items-center">
                   <a
                     href="#"
                     className="text-decoration-none h5 fw-medium text-dark"
                   >
-                    <i className="fas fa-circle text-success"></i>
-                    <span>50% Positivo</span>
-                  </a>
-                  <a
-                    href="#"
-                    className="text-decoration-none h5 fw-medium text-dark"
-                  >
-                    <i className="fas fa-circle text-danger"></i>
-                    <span>10% Negativo</span>
-                  </a>
-                  <a
-                    href="#"
-                    className="text-decoration-none h5 fw-medium text-dark"
-                  >
-                    <i className="fas fa-circle text-warning"></i>
-                    <span>5% Neutro</span>
+                    <i id="sentiment-color-news" className="fas fa-circle text-success"></i>
+                    <span id="sentiment-news">Positivo</span>
                   </a>
                 </div>
               </div>
@@ -118,7 +107,7 @@ export default () => {
               >
                 Fechar
               </button>
-              <a href="#" className="btn btn-outline-primary" target="_blank">
+              <a href="#" id="link-news" className="btn btn-outline-primary" target="_blank">
                 Acessar noticia <i className="fad fa-link"></i>
               </a>
             </div>

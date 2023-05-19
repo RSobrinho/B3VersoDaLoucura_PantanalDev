@@ -1,16 +1,21 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: rgb(255,255,255);
-  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(250,250,255,1) 49%, rgba(255,255,255,1) 100%); 
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(250, 250, 255, 1) 49%,
+    rgba(255, 255, 255, 1) 100%
+  );
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -22,11 +27,33 @@ code {
   height: 75vh; /* ajuste conforme necessário */
 }
 
-.header{
+.header {
   margin-left: 20px;
 }
 
 .legenda {
-
+  font-weight: bold;
+  margin-top: 60px;
   margin-bottom: 5px;
+}
+
+.btn-primary {
+  background-color: #08377b;
+  color: #fff;
+}
+
+.lead {
+  font-weight: 400;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.tb-default {
+  max-height: 35rem;
+}
+
+.tb-column-max {
+  max-width: 10rem;
 }

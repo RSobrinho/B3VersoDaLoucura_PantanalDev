@@ -1,7 +1,10 @@
 import React from "react";
 import img from "../public/logo-b3.png";
+import { alterPage } from "./page";
 
 export default (props) => {
+  const [page, setPage] = React.useState(props.page);
+
   return (
     <React.Fragment>
       <header>
@@ -36,23 +39,25 @@ export default (props) => {
             <div className="collapse navbar-collapse" id="navbar-collapse">
               <ul className="navbar-nav me-auto mb-2 mb-md-0 h5 fw-normal">
                 <li className="nav-item">
-                  <button
-                    className="nav-link text-default"
-                    aria-current="page"
-                    onClick={() => props.switch(1)}
-                  >
-                    Buscar
-                  </button>
-                </li>
-
-                <li className="nav-item">
-                  <button
-                    className="nav-link text-default"
+                  <a
+                    href="#main"
+                    className="nav-link text-default page-link"
                     aria-current="page"
                     onClick={() => props.switch(0)}
                   >
+                    Buscar
+                  </a>
+                </li>
+
+                <li className="nav-item">
+                  <a
+                    href="#assessments"
+                    className="nav-link text-default page-link"
+                    aria-current="page"
+                    onClick={() => props.switch(1)}
+                  >
                     Avaliações
-                  </button>
+                  </a>
                 </li>
               </ul>
             </div>

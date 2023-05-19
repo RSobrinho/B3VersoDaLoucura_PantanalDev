@@ -5,14 +5,19 @@ import reportWebVitals from "./reportWebVitals";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
 import NewsModal from "./components/NewsModal";
+import SpaceOfTimeModal from "./components/SpaceOfTimeModal";
+import { getPage } from "./components/page";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const pg = getPage();
+
 root.render(
   <React.StrictMode>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <Main page={1} />
+    <Main page={pg} />
     <NewsModal />
     <Footer />
+    <SpaceOfTimeModal />
   </React.StrictMode>
 );
 

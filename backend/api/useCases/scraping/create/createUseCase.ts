@@ -131,8 +131,8 @@ export class CreateUseCase {
       const cl = await AI.execute({
         texts: [ti],
       });
-      params.sentiment =
-        cl[0] || (!cl[0] && cl[0].toString() == "0") ? cl[0] : 1;
+
+      params.sentiment = cl !== null && cl.length > 0 ? cl[0] : 1;
     }
 
     // Classificar sentimento

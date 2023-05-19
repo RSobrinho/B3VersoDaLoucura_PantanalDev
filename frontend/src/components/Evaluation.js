@@ -1,71 +1,69 @@
 import React from "react";
 import GraphModal from "./GraphModal";
+import SpaceOfTimeModal from "./SpaceOfTimeModal";
 import useFetch from "./useFetch";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 
 export default () => {
-  const { data, loading, error } = useFetch("https://jsonplaceholder.typicode.com/posts/2");
-  if (loading) return <h1>Carregando...</h1>
+  const { data, loading, error } = useFetch(
+    "https://jsonplaceholder.typicode.com/posts/2"
+  );
+  if (loading) {
+    return (
+      <h1>
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </h1>
+    );
+  }
   if (error) console.log(error);
 
   return (
     <div className="text-start">
       <div className="d-flex align-items-center justify-content-between">
         <h1 className="fw-normal h2">Avaliações</h1>
-        <div className="d-flex align-items-center justify-content-between gap-3">
-
-          <GraphModal title={data?.title} txt={data?.body} />
-
-          {/* Button trigger modal */}
-          <button
-            type="button"
-            className="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#graphModal"
-          >
-            Ver estatísticas...
-          </button>
-
-          <div className="dropdown">
-            <a
-              href="#"
-              data-bs-toggle="dropdown"
-              data-bs-display="static"
-              aria-expanded="false"
-              className="text-decoration-none text-dark fw-medium"
-            >
-              Filtro
-              <i className="fal fa-filter"></i>
-            </a>
-            <ul className="dropdown-menu dropdown-menu-end">
-              <li>
-                <a className="dropdown-item active" data-filter="0" href="#">
-                  Todas Avaliações
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" data-filter="1" href="#">
-                  Avaliações de hoje
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" data-filter="2" href="#">
-                  Minhas Avaliações
-                </a>
-              </li>
-            </ul>
+        <div className="d-flex align-items-center justify-content-center gap-2 h5 fw-italic">
+          <div className="d-flex gap-1 align-items-center">
+            <span>Inicio: </span>
+            <input type="date" className="form-control" />
           </div>
 
-          <div className="dropdown">
-            <a
-              href="#"
+          <div className="d-flex gap-1 align-items-center">
+            <span>Fim: </span>
+            <input type="date" className="form-control" />
+          </div>
+
+          <Dropdown>
+            <Dropdown.Toggle
+              id="dropdown-button-dark-example1"
+              className="btn btn-primary"
+            >
+              <i className="fal fa-filter"></i>
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu variant="dark">
+              <Dropdown.Item href="#/action-1" active>
+                Action
+              </Dropdown.Item>
+              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+              <Dropdown.Divider />
+              <Dropdown.Item href="#/action-4">Separated link</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+
+          {/* <div className="dropdown">
+            <button
+              type="button"
+              className="btn btn-primary"
               data-bs-toggle="dropdown"
               data-bs-display="static"
               aria-expanded="false"
-              className="text-decoration-none text-dark fw-medium"
             >
-              Impacto
-              <i className="fad fa-circle"></i>
-            </a>
+              <i className="fal fa-filter"></i>
+            </button>
             <ul className="dropdown-menu dropdown-menu-end">
               <li>
                 <a className="dropdown-item active" data-filter="0" href="#">
@@ -88,7 +86,25 @@ export default () => {
                 </a>
               </li>
             </ul>
-          </div>
+          </div> */}
+
+          <button
+            type="button"
+            className="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#temp-modal"
+          >
+            <i className="far fa-search"></i>
+          </button>
+
+          <button
+            type="button"
+            className="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#graphModal"
+          >
+            <i className="far fa-chart-pie-alt"></i>
+          </button>
         </div>
       </div>
 
@@ -107,7 +123,7 @@ export default () => {
                   href="#"
                   className="text-dark fst-italic h5"
                   data-bs-toggle="modal"
-                  data-bs-target="#modal-assessment"
+                  data-bs-target="#news-modal"
                 >
                   Acessar
                 </a>
@@ -119,6 +135,8 @@ export default () => {
           </tbody>
         </table>
       </div>
+
+      <GraphModal title={data?.title} txt={data?.body} />
     </div>
   );
 };

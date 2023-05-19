@@ -1,4 +1,7 @@
 import React from "react";
+import CandleChart from "./CandleChart";
+import PieChart from "./PieChart";
+import DashedChart from "./DashedChart";
 
 export default (props) => {
   return (
@@ -9,12 +12,9 @@ export default (props) => {
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <div className="modal-dialog">
+      <div className="modal-dialog modal-dialog-centered modal-xl">
         <div className="modal-content">
           <div className="modal-header">
-            <h1 className="modal-title fs-5" id="exampleModalLabel">
-              Estatísticas
-            </h1>
             <button
               type="button"
               className="btn-close"
@@ -23,20 +23,34 @@ export default (props) => {
             ></button>
           </div>
           <div className="modal-body">
-            <h2>{props.title}</h2>
-            <p>{props.txt}</p>
-          </div>
-          <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" className="btn btn-primary">
-              Save changes
-            </button>
+            <h1>XXXX Notícias foram avaliadas</h1>
+            <p>Data inicial: XX/XX/XXXX</p>
+            <p>Data final: XX/XX/XXXX</p>
+
+            <div className="d-flex align-items-center justify-content-between">
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <div>
+                  <i className="fas fa-circle text-success m-2"></i>
+                  <span className="lead">61.4% Positivas</span>
+                  <p>700 notícias positivas</p>
+                </div>
+                <div>
+                  <i className="fas fa-circle text-warning m-2"></i>
+                  <span className="lead">12.3& Neutras</span>
+                  <p>140 notícias positivas</p>
+                </div>
+                <div>
+                  <i className="fas fa-circle text-danger m-2"></i>
+                  <span className="lead">26.3% Negativas</span>
+                  <p>300 notícias positivas</p>
+                </div>
+              </div>
+              <div>
+                <PieChart />
+              </div>
+            </div>
+
+            <DashedChart />
           </div>
         </div>
       </div>
