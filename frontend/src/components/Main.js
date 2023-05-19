@@ -9,10 +9,22 @@ import "../public/fontawesome/css/all.css";
 function Main(props) {
   const [page, setPage] = useState(props.page);
 
+  // Data share variable
+  const [res, setRes] = useState(null);
+
+  // Data share variable
+  const [res, setRes] = useState(null);
+
   function configurePage(page) {
     switch (page) {
       case 1:
-        return <Evaluation switch={(num) => setPage(num)} />;
+        return (
+          <Evaluation
+            res={res}
+            modRes={(data) => setRes(data)}
+            switch={(num) => setPage(num)}
+          />
+        );
 
       default:
         return <Search />;
@@ -23,7 +35,10 @@ function Main(props) {
     <>
       <Header switch={(num) => setPage(num)} />
 
-      <SpaceOfTimeModal switch={(num) => setPage(num)} />
+      <SpaceOfTimeModal
+        modRes={(data) => setRes(data)}
+        switch={(num) => setPage(num)}
+      />
 
       <main className="px-3 h-100">{configurePage(page)}</main>
     </>

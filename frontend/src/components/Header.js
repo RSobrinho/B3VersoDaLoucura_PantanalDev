@@ -12,7 +12,7 @@ export default (props) => {
           <div className="container-fluid">
             <a
               className="navbar-brand d-flex align-items-end"
-              href="index.html"
+              href=""
             >
               <img
                 className=""

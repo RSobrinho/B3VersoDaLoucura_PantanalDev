@@ -2,7 +2,6 @@ import React from "react";
 import GraphModal from "./GraphModal";
 import SpaceOfTimeModal from "./SpaceOfTimeModal";
 import NewsTable from "./NewsTable";
-import useFetch from "./useFetch";
 import getNews from "./getNews";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";

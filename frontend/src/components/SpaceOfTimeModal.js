@@ -1,10 +1,31 @@
 import React, { useState } from "react";
-import { alterPage } from "./page";
+import axios from "axios";
+
+const baseURL = "//localhost:8082/api/v1";
 
 const TempModal = (props) => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [page, setPage] = React.useState(props.page);
+
+  async function createPost(init, final) {
+    const response = await axios.post(`${baseURL}/scraping`, {
+      initial_date: init,
+      final_date: final,
+    });
+    return response.data;
+  }
+
+  async function toPost() {
+    const init = document.getElementById("in-initial-date").value;
+    const final = document.getElementById("in-final-date").value;
+
+    const res = await createPost(init, final);
+    props.modRes(res);
+
+    // Test purposes
+    console.log("Printing data from request...");
+    console.log(res);
+  }
 
   const handleStartDateChange = (event) => {
     setStartDate(event.target.value);
@@ -15,14 +36,13 @@ const TempModal = (props) => {
   };
 
   const handleButtonClick = () => {
+    toPost();
     props.switch(1);
     location.href =
       "#assessments?initial_date=" +
       startDate.toString() +
       "&final_date=" +
       endDate.toString();
-    console.log("Start Date:", startDate);
-    console.log("End Date:", endDate);
   };
 
   return (
@@ -59,6 +79,7 @@ const TempModal = (props) => {
               <div className="col-12">
                 <label className="h4">Data Inicial</label>
                 <input
+                  id="in-initial-date"
                   type="date"
                   className="form-control"
                   value={startDate}
@@ -69,6 +90,7 @@ const TempModal = (props) => {
               <div className="col-12">
                 <label className="h4">Data Final</label>
                 <input
+                  id="in-final-date"
                   type="date"
                   className="form-control"
                   value={endDate}
