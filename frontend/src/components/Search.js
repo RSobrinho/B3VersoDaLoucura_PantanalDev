@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Modal } from "bootstrap";
 
-const baseURL = "//localhost:3000/api/v1";
+const baseURL = "//localhost:8082/api/v1";
 
 export default () => {
   const [post, setPost] = useState(null);

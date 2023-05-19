@@ -4,3 +4,4 @@ tests
 swagger
 tsconfig-paths.js
 .eslintrc.js
+.env

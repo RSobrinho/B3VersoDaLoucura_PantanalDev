@@ -2,6 +2,7 @@ import express from "express";
 import ScrapingRouter from "./routes/scrapingRouter";
 import NewsRouter from "./routes/newsRouter";
 import mongoose from "mongoose";
+import cors from "cors";
 import { errorResponse } from "./errors/handler";
 import { config } from "dotenv";
 
@@ -19,9 +20,9 @@ class App {
     this.errorMiddlewares();
   }
 
-
   private middlewares() {
     this.express.use(express.json());
+    this.express.use(cors());
   }
 
   private database() {

@@ -2,23 +2,28 @@ import React from "react";
 import GraphModal from "./GraphModal";
 import SpaceOfTimeModal from "./SpaceOfTimeModal";
 import useFetch from "./useFetch";
+import getNews from "./getNews";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
+import env from "react-dotenv";
 
 export default () => {
-  const { data, loading, error } = useFetch(
-    "https://jsonplaceholder.typicode.com/posts/2"
-  );
-  if (loading) {
-    return (
-      <h1>
-        <div className="spinner-border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </h1>
-    );
+  const url = `${env.URL_BACK}:${env.PORT_BACK}/api/v1/news`;
+
+  if (url) {
+    const { data, loading, error } = getNews(url);
+
+    if (loading) {
+      return (
+        <h1>
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </h1>
+      );
+    }
+    if (error) console.log(error);
   }
-  if (error) console.log(error);
 
   return (
     <div className="text-start">
@@ -45,10 +50,17 @@ export default () => {
 
             <Dropdown.Menu variant="dark">
               <Dropdown.Item href="#/action-1" active>
-                Action
+                <i className="fas fa-circle text-success m-2"></i>
+                <span className="lead">Positivas</span>
               </Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+              <Dropdown.Item href="#/action-2">
+                <i className="fas fa-circle text-warning m-2"></i>
+                <span className="lead">Neutra</span>
+              </Dropdown.Item>
+              <Dropdown.Item href="#/action-3">
+                <i className="fas fa-circle text-danger m-2"></i>
+                <span className="lead">Negativa</span>
+              </Dropdown.Item>
               <Dropdown.Divider />
               <Dropdown.Item href="#/action-4">Separated link</Dropdown.Item>
             </Dropdown.Menu>
@@ -136,7 +148,7 @@ export default () => {
         </table>
       </div>
 
-      <GraphModal title={data?.title} txt={data?.body} />
+      {/* <GraphModal title={data?.title} txt={data?.body} /> */}
     </div>
   );
 };
