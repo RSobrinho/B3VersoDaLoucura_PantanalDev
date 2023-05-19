@@ -45,10 +45,17 @@ export default () => {
 
             <Dropdown.Menu variant="dark">
               <Dropdown.Item href="#/action-1" active>
-                Action
+                <i className="fas fa-circle text-success m-2"></i>
+                <span className="lead">Positivas</span>
               </Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+              <Dropdown.Item href="#/action-2">
+                <i className="fas fa-circle text-warning m-2"></i>
+                <span className="lead">Neutra</span>
+              </Dropdown.Item>
+              <Dropdown.Item href="#/action-3">
+                <i className="fas fa-circle text-danger m-2"></i>
+                <span className="lead">Negativa</span>
+              </Dropdown.Item>
               <Dropdown.Divider />
               <Dropdown.Item href="#/action-4">Separated link</Dropdown.Item>
             </Dropdown.Menu>
