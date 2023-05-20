@@ -40,6 +40,51 @@ export default (props) => {
     }
   };
 
+  const NewsModal = document.getElementById("news-modal");
+
+  if (NewsModal) {
+    NewsModal.addEventListener("show.bs.modal", (event) => {
+      const button = event.relatedTarget;
+      const title = NewsModal.querySelector("#title-news");
+      const content = NewsModal.querySelector("#content-news");
+      const link = NewsModal.querySelector("#link-news");
+      const date = NewsModal.querySelector("#date-news");
+      const sentiment_news = NewsModal.querySelector("#sentiment-news");
+      const sentiment_color_news = NewsModal.querySelector(
+        "#sentiment-color-news"
+      );
+
+      const getSentiment = () => {
+        if (button.getAttribute("data-color") == "success")
+          return ["text-success", "Positivo"];
+        else if (button.getAttribute("data-color") == "warning")
+          return ["text-warning", "Neutro"];
+        return ["text-danger", "Negativo"];
+      };
+      const sentiment = getSentiment();
+
+      const dt = new Date(button.getAttribute("data-dt-news"));
+      title.textContent = button.getAttribute("data-title");
+      content.textContent = button.getAttribute("data-content");
+      link.href = button.getAttribute("data-url");
+      sentiment_news.textContent = sentiment[1];
+      sentiment_color_news.classList.remove("text-success");
+      sentiment_color_news.classList.remove("text-warning");
+      sentiment_color_news.classList.remove("text-danger");
+      sentiment_color_news.classList.add(sentiment[0]);
+
+      function pad(s) {
+        return s < 10 ? "0" + s : s;
+      }
+
+      date.textContent = [
+        pad(dt.getDate()),
+        pad(dt.getMonth() + 1),
+        dt.getFullYear(),
+      ].join("/");
+    });
+  }
+
   return (
     <div className="text-center">
       <div className="d-flex align-items-center justify-content-between">

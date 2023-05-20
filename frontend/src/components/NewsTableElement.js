@@ -23,6 +23,11 @@ export default (props) => {
           className="text-dark fst-italic h5"
           data-bs-toggle="modal"
           data-bs-target="#news-modal"
+          data-title={news?.title}
+          data-content={news?.description}
+          data-dt-news={news?.date}
+          data-url={news?.link}
+          data-color={color}
         >
           Acessar
         </a>

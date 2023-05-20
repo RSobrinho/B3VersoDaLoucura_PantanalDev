@@ -83,18 +83,23 @@ export default () => {
                 <label>
                   Data da notícia:
                   <span>&nbsp;</span>
-                  <span id="date-news" className="fw-normal">01/05/2023</span>
+                  <span id="date-news" className="fw-normal">
+                    01/05/2023
+                  </span>
                 </label>
               </div>
               <div className="col-12">
                 <label className="h4">Sentimento predito:</label>
                 <div className="d-inline-flex gap-2">
-                <span>&nbsp;</span>
+                  <span>&nbsp;</span>
                   <a
                     href="#"
                     className="text-decoration-none h5 fw-medium text-dark"
                   >
-                    <i id="sentiment-color-news" className="fas fa-circle text-success"></i>
+                    <i
+                      id="sentiment-color-news"
+                      className="fas fa-circle text-success"
+                    ></i>
                     <span>&nbsp;</span>
                     <span id="sentiment-news">Positivo</span>
                   </a>
@@ -109,7 +114,12 @@ export default () => {
               >
                 Fechar
               </button>
-              <a href="#" id="link-news" className="btn btn-outline-primary" target="_blank">
+              <a
+                href="#"
+                id="link-news"
+                className="btn btn-outline-primary"
+                target="_blank"
+              >
                 Acessar noticia <i className="fad fa-link"></i>
               </a>
             </div>

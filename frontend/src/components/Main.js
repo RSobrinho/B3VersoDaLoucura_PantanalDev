@@ -26,11 +26,11 @@ function Main(props) {
     <>
       <Header switch={(num) => setPage(num)} />
 
-      <NewsModal />
       <SpaceOfTimeModal
         modRes={(data) => setRes(data)}
         switch={(num) => setPage(num)}
       />
+      <NewsModal />
 
       <main className="px-3 h-100">{configurePage(page)}</main>
     </>

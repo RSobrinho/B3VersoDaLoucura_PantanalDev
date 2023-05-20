@@ -4,7 +4,6 @@ import PieChart from "./PieChart";
 import DashedChart from "./DashedChart";
 
 export default (props) => {
-  
   let totalPositivo;
   let totalNeutro;
   let totalNegativo;
@@ -13,15 +12,15 @@ export default (props) => {
   let porcentagemPositivo;
   let total;
 
-  if(props && props.news){
-    console.log(props.news)
-    totalPositivo = props.news.sentiment_totals[2].quantity
-    totalNeutro = props.news.sentiment_totals[1].quantity
-    totalNegativo = props.news.sentiment_totals[0].quantity
-    porcentagemPositivo = props.news.sentiment_totals[2].percentage
-    porcentagemNeutro = props.news.sentiment_totals[1].percentage
-    porcentagemNegativo = props.news.sentiment_totals[0].percentage
-    total = props.news.total
+  if (props && props.news) {
+    console.log(props.news);
+    totalPositivo = props.news.sentiment_totals[2].quantity;
+    totalNeutro = props.news.sentiment_totals[1].quantity;
+    totalNegativo = props.news.sentiment_totals[0].quantity;
+    porcentagemPositivo = props.news.sentiment_totals[2].percentage;
+    porcentagemNeutro = props.news.sentiment_totals[1].percentage;
+    porcentagemNegativo = props.news.sentiment_totals[0].percentage;
+    total = props.news.total;
   }
 
   return (
@@ -66,7 +65,11 @@ export default (props) => {
                 </div>
               </div>
               <div>
-                <PieChart totalPositivo={totalPositivo} totalNegativo={totalNegativo} totalNeutro={totalNeutro}/>
+                <PieChart
+                  totalPositivo={totalPositivo}
+                  totalNegativo={totalNegativo}
+                  totalNeutro={totalNeutro}
+                />
               </div>
             </div>
 
