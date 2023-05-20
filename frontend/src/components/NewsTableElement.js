@@ -5,12 +5,12 @@ import env from "react-dotenv";
 export default (props) => {
   const [news, setNews] = React.useState(props.data);
   const limit = 33.33;
-  let sentiment = "warning";
+  let color = "warning";
 
   if (news?.sentiment?.positive > limit) {
-    sentiment = "success";
+    color = "success";
   } else if (news?.sentiment?.negative > limit) {
-    sentiment = "danger";
+    color = "danger";
   }
 
   return (
@@ -28,7 +28,7 @@ export default (props) => {
         </a>
       </td>
       <td className="h3" style={{ width: "1rem" }}>
-        <i className={`fas fa-circle text-${sentiment}`}></i>
+        <i className={`fas fa-circle text-${color}`}></i>
       </td>
     </tr>
   );

@@ -3,17 +3,13 @@ import axios from "axios";
 export class ClassifyAI {
   public async execute(data: { texts: string[] }): Promise<number[]> {
     const url = `${process.env.URL_AI}:${process.env.PORT_AI}/predict`;
-    console.log(url);
-    
+
     try {
       console.log(data);
-      
+
       const response = await axios.post(url, data);
-      console.log(response.data + "caralhoooooooooooooo");
       return response.data;
-      
     } catch (error) {
-      console.log(error + "agr entendi");
       return null;
     }
   }

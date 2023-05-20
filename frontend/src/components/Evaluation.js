@@ -7,6 +7,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import env from "react-dotenv";
 import { getQueryParams } from "./page";
+import $ from "jquery";
 
 export default (props) => {
   let [dataTable, setDataTable] = React.useState(null);
@@ -32,8 +33,10 @@ export default (props) => {
     if (init && final) {
       let link = window.location.href;
       link = link.split("?")[0];
-      props.switch(1);
-      location.href = `${link}?initial_date=${init}&final_date=${final}`;
+      const url = `${link}?initial_date=${init}&final_date=${final}`;
+      window.location.href = url;
+      document.location.reload();
+      setDataTable({ initial_date: init, final_date: final });
     }
   };
 
@@ -107,7 +110,9 @@ export default (props) => {
         </div>
       </div>
 
-      <NewsTable data={dataTable} />
+      <div id="table-news" className="table-responsive tb-default py-2">
+        <NewsTable data={dataTable} />
+      </div>
       <GraphModal title="title" txt="content" />
     </div>
   );

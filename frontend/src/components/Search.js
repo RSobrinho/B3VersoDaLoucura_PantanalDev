@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Modal } from "bootstrap";
+import env from "react-dotenv";
 
-const baseURL = "//localhost:8082/api/v1";
+const baseURL = `${env.URL_BACK}:${env.PORT_BACK}/api/v1`;
 
 export default () => {
   const [post, setPost] = useState(null);
