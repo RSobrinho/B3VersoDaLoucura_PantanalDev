@@ -10,7 +10,7 @@ export default (props) => {
   let nw;
 
   if (dates && dates.initial_date && dates.final_date) {
-    url = `${env.URL_BACK}:${env.PORT_BACK}/api/v1/news?initial_date=${dates.initial_date}&final_date=${dates.final_date}`;
+    url = `${process.env.REACT_APP_URL_BACK}/api/v1/news?initial_date=${dates.initial_date}&final_date=${dates.final_date}`;
   }
 
   if (url) {
