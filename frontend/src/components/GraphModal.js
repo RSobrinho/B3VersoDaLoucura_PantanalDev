@@ -73,7 +73,7 @@ export default (props) => {
               </div>
             </div>
 
-            <DashedChart />
+            {/* <DashedChart /> */}
           </div>
         </div>
       </div>
