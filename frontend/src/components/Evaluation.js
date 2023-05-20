@@ -6,24 +6,36 @@ import getNews from "./getNews";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import env from "react-dotenv";
+import { getQueryParams } from "./page";
 
 export default (props) => {
-  const url = `${env.URL_BACK}:${env.PORT_BACK}/api/v1/news`;
+  let [dataTable, setDataTable] = React.useState(null);
 
-  if (url) {
-    const { data, loading, error } = getNews(url);
+  const urlParams = getQueryParams(window.location.href);
+  let initial_date = "";
+  let final_date = "";
 
-    if (loading) {
-      return (
-        <h1>
-          <div className="spinner-border" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-        </h1>
-      );
-    }
-    if (error) console.log(error);
+  if (urlParams && urlParams.initial_date && urlParams.final_date) {
+    initial_date = urlParams.initial_date;
+    final_date = urlParams.final_date;
+    dataTable = urlParams;
+  } else {
+    let dateNow = new Date().toISOString().split("T")[0];
+    initial_date = dateNow;
+    final_date = dateNow;
   }
+
+  const newsSearch = () => {
+    const init = document.getElementById("input-initial-date").value;
+    const final = document.getElementById("input-final-date").value;
+
+    if (init && final) {
+      let link = window.location.href;
+      link = link.split("?")[0];
+      props.switch(1);
+      location.href = `${link}?initial_date=${init}&final_date=${final}`;
+    }
+  };
 
   return (
     <div className="text-center">
@@ -32,12 +44,22 @@ export default (props) => {
         <div className="d-flex align-items-center justify-content-center gap-2 h5 fw-italic">
           <div className="d-flex gap-1 align-items-center">
             <span>Inicio: </span>
-            <input type="date" className="form-control" />
+            <input
+              type="date"
+              className="form-control"
+              id="input-initial-date"
+              defaultValue={initial_date}
+            />
           </div>
 
           <div className="d-flex gap-1 align-items-center">
             <span>Fim: </span>
-            <input type="date" className="form-control" />
+            <input
+              type="date"
+              className="form-control"
+              id="input-final-date"
+              defaultValue={final_date}
+            />
           </div>
 
           <Dropdown>
@@ -69,8 +91,7 @@ export default (props) => {
           <button
             type="button"
             className="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#temp-modal"
+            onClick={newsSearch}
           >
             <i className="far fa-search"></i>
           </button>
@@ -86,8 +107,8 @@ export default (props) => {
         </div>
       </div>
 
-      <NewsTable />
-      {/* <GraphModal title={data?.title} txt={data?.body} /> */}
+      <NewsTable data={dataTable} />
+      <GraphModal title="title" txt="content" />
     </div>
   );
 };

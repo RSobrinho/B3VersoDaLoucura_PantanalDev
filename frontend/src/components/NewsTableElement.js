@@ -2,15 +2,21 @@ import React from "react";
 import getNews from "./getNews";
 import env from "react-dotenv";
 
-export default (element) => {
+export default (props) => {
+  const [news, setNews] = React.useState(props.data);
+  const limit = 33.33;
+  let sentiment = "warning";
+
+  if (news?.sentiment?.positive > limit) {
+    sentiment = "success";
+  } else if (news?.sentiment?.negative > limit) {
+    sentiment = "danger";
+  }
+
   return (
     <tr>
-      <th className="text-truncate tb-column-max">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, non.
-        Dolores, iusto reiciendis necessitatibus culpa voluptatibus quidem
-        laborum unde amet in eveniet adipisci, voluptates similique molestiae.
-        Vero impedit hic iusto?
-      </th>
+      <th className="text-truncate tb-column-max text-start">{news?.title}</th>
+      <td className="h5 text-end">{news?.date.slice(0, 10)}</td>
       <td className="text-end">
         <a
           href="#"
@@ -22,7 +28,7 @@ export default (element) => {
         </a>
       </td>
       <td className="h3" style={{ width: "1rem" }}>
-        <i className="fas fa-circle text-success"></i>
+        <i className={`fas fa-circle text-${sentiment}`}></i>
       </td>
     </tr>
   );
