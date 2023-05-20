@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const baseURL = `${process.env.URL_BACK}:${process.env.PORT_BACK}/api/v1`;
+const baseURL = `${process.env.REACT_APP_URL_BACK}:${process.env.REACT_APP_PORT_BACK}/api/v1`;
 
 const TempModal = (props) => {
   const [startDate, setStartDate] = useState("");

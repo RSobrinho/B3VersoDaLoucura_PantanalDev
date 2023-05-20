@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { Modal } from "bootstrap";
 
-const baseURL = `${process.env.URL_BACK}:${process.env.PORT_BACK}/api/v1`;
+const baseURL = `${process.env.REACT_APP_URL_BACK}:${process.env.REACT_APP_PORT_BACK}/api/v1`;
 
 export default () => {
   async function createPost(link) {
