@@ -15,27 +15,58 @@ export default (props) => {
   const urlParams = getQueryParams(window.location.href);
   let initial_date = "";
   let final_date = "";
+  let sents = ["", "", "", "active"];
 
   if (urlParams && urlParams.initial_date && urlParams.final_date) {
     initial_date = urlParams.initial_date;
     final_date = urlParams.final_date;
     dataTable = urlParams;
+
+    if (urlParams.sentiment) {
+      sents[3] = "";
+      sents[+urlParams.sentiment] = "active";
+    }
   } else {
     let dateNow = new Date().toISOString().split("T")[0];
     initial_date = dateNow;
     final_date = dateNow;
   }
 
+  const alterOption = (event) => {
+    console.log(event.target);
+
+    const allElements = document.querySelectorAll(".sentiment-filter");
+
+    allElements.forEach((element) => {
+      element.classList.remove("active");
+    });
+
+    event.target.classList.add("active");
+  };
+
   const newsSearch = () => {
     const init = document.getElementById("input-initial-date").value;
     const final = document.getElementById("input-final-date").value;
+    const sent = document.querySelector(".sentiment-filter.active");
+    let sentiment = -1;
 
     if (init && final) {
       let link = window.location.href;
       link = link.split("?")[0];
-      const url = `${link}?initial_date=${init}&final_date=${final}`;
+      let url = `${link}?initial_date=${init}&final_date=${final}`;
+
+      if (sent && sent.getAttribute("data-sentiment")) {
+        sentiment = sent.getAttribute("data-sentiment");
+        url +=
+          +sentiment >= 0 && +sentiment <= 2 ? `&sentiment=${sentiment}` : "";
+      }
+
       window.location.href = url;
-      setDataTable({ initial_date: init, final_date: final });
+      setDataTable({
+        initial_date: init,
+        final_date: final,
+        sentiment: +sentiment,
+      });
       document.location.reload();
     }
   };
@@ -118,21 +149,42 @@ export default (props) => {
               <i className="fal fa-filter"></i>
             </Dropdown.Toggle>
 
-            <Dropdown.Menu variant="dark">
-              <Dropdown.Item href="#/action-1" active>
+            <Dropdown.Menu>
+              <Dropdown.Item
+                className={`sentiment-filter text-center ${sents[3]}`}
+                onFocus={alterOption}
+                onClick={newsSearch}
+                data-sentiment="-1"
+              >
+                <span className="lead">Todas</span>
+              </Dropdown.Item>
+              <Dropdown.Item
+                className={`sentiment-filter ${sents[2]}`}
+                onFocus={alterOption}
+                onClick={newsSearch}
+                data-sentiment="2"
+              >
                 <i className="fas fa-circle text-success m-2"></i>
                 <span className="lead">Positivas</span>
               </Dropdown.Item>
-              <Dropdown.Item href="#/action-2">
+              <Dropdown.Item
+                className={`sentiment-filter ${sents[1]}`}
+                data-sentiment="1"
+                onFocus={alterOption}
+                onClick={newsSearch}
+              >
                 <i className="fas fa-circle text-warning m-2"></i>
                 <span className="lead">Neutra</span>
               </Dropdown.Item>
-              <Dropdown.Item href="#/action-3">
+              <Dropdown.Item
+                className={`sentiment-filter ${sents[0]}`}
+                data-sentiment="0"
+                onFocus={alterOption}
+                onClick={newsSearch}
+              >
                 <i className="fas fa-circle text-danger m-2"></i>
                 <span className="lead">Negativa</span>
               </Dropdown.Item>
-              <Dropdown.Divider />
-              <Dropdown.Item href="#/action-4">Separated link</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
 

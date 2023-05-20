@@ -1,4 +1,0 @@
-Pesquisa automatica
-Pesquisa no layout
-Acesso ao modal
-Acesso aos graficos + preencher dados

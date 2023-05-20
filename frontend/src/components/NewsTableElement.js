@@ -13,10 +13,20 @@ export default (props) => {
     color = "danger";
   }
 
+  function pad(s) {
+    return s < 10 ? "0" + s : s;
+  }
+
+  const dt = new Date(news?.date);
+
   return (
     <tr>
       <th className="text-truncate tb-column-max text-start">{news?.title}</th>
-      <td className="h5 text-end">{news?.date.slice(0, 10)}</td>
+      <td className="h5 text-center">
+        {[pad(dt.getDate()), pad(dt.getMonth() + 1), dt.getFullYear()].join(
+          "/"
+        )}
+      </td>
       <td className="text-end">
         <a
           href="#"

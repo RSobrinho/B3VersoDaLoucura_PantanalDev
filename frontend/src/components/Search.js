@@ -1,33 +1,60 @@
 import React from "react";
 import axios from "axios";
 import { Modal } from "bootstrap";
+import { AlertSweet } from "./AlertSweet";
 
 const baseURL = `${process.env.REACT_APP_URL_BACK}/api/v1`;
 
 export default () => {
   async function createPost(link) {
-    const response = await axios.post(`${baseURL}/scraping`, {
-      link,
-    });
-    return response.data;
+    try {
+      const response = await axios.post(`${baseURL}/scraping`, {
+        link,
+      });
+      return response.data;
+    } catch (err) {
+      return null;
+    }
   }
 
   async function toPost() {
     const link = document.getElementById("input-link").value;
+
+    if (!link) {
+      AlertSweet("Informe um link para realizar avaliação!");
+      // MySwal.fire({
+      //   title: "Informe um link para realizar avaliação!",
+      //   didOpen: () => {
+      //     MySwal.showLoading();
+      //   },
+      // }).then(() => {
+      //   return MySwal.fire("Informe um link para realizar avaliação!");
+      // });
+      return;
+    }
+
     const res = await createPost(link);
 
-    const NewsModal = document.getElementById("news-modal");
+    if (res) {
+      AlertSweet("Informe um link para realizar avaliação!", "success");
+    } else {
+      AlertSweet("Não foi possivel realizar a avaliação!");
+    }
 
-    if (NewsModal) {
-      NewsModal.addEventListener("show.bs.modal", () => {
-        const title = NewsModal.querySelector("#title-news");
-        const content = NewsModal.querySelector("#content-news");
-        const link = NewsModal.querySelector("#link-news");
-        const date = NewsModal.querySelector("#date-news");
+    const NewsModal = document.getElementById("news-modal-scraping");
+
+    if (NewsModal && res) {
+      NewsModal.addEventListener("show.bs.modal", (event) => {
+        const title = NewsModal.querySelector("#title-news-scraping");
+        const content = NewsModal.querySelector("#content-news-scraping");
+        const link = NewsModal.querySelector("#link-news-scraping");
+        const date = NewsModal.querySelector("#date-news-scraping");
         const dt = new Date(res.scraping.news.date);
-        const sentiment_news = NewsModal.querySelector("#sentiment-news");
+        const sentiment_news = NewsModal.querySelector(
+          "#sentiment-news-scraping"
+        );
         const sentiment_color_news = NewsModal.querySelector(
-          "#sentiment-color-news"
+          "#sentiment-color-news-scraping"
         );
 
         const getSentiment = () => {
@@ -58,7 +85,7 @@ export default () => {
         ].join("/");
       });
 
-      const myModal = new Modal("#news-modal", {
+      const myModal = new Modal("#news-modal-scraping", {
         keyboard: false,
       });
 
@@ -94,14 +121,15 @@ export default () => {
                 <i className="fas fa-search text-default"></i>
               </button>
             </div>
-            <button
-              type="button"
-              className="seleciona-intervalo btn btn-link"
+            <a
+              href="#"
+              className="seleciona-intervalo btn btn-lg btn-primary mt-4"
               data-bs-toggle="modal"
               data-bs-target="#temp-modal"
             >
-              Selecione o intervalo de tempo
-            </button>
+              Avaliar notícias por um intervalo de tempo &nbsp;
+              <i className="fad fa-calendar"></i>
+            </a>
           </div>
         </form>
         <p className="lead legenda">Tipos de avaliações</p>

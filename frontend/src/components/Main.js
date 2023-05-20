@@ -5,6 +5,7 @@ import Search from "./Search";
 import SpaceOfTimeModal from "./SpaceOfTimeModal";
 import "../public/fontawesome/css/all.css";
 import NewsModal from "./NewsModal";
+import NewsModalScraping from "./NewsModalScraping";
 
 function Main(props) {
   const [page, setPage] = useState(props.page);
@@ -31,6 +32,7 @@ function Main(props) {
         switch={(num) => setPage(num)}
       />
       <NewsModal />
+      <NewsModalScraping />
 
       <main className="px-3 h-100">{configurePage(page)}</main>
     </>

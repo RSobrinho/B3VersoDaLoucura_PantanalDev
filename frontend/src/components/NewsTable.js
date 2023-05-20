@@ -11,6 +11,10 @@ export default (props) => {
 
   if (dates && dates.initial_date && dates.final_date) {
     url = `${process.env.REACT_APP_URL_BACK}/api/v1/news?initial_date=${dates.initial_date}&final_date=${dates.final_date}`;
+    url +=
+      dates.sentiment && +dates.sentiment >= 0 && +dates.sentiment <= 2
+        ? `&sentiment=${dates.sentiment}`
+        : "";
   }
 
   if (url) {
@@ -33,7 +37,7 @@ export default (props) => {
         </div>
       );
     }
-    props.dataChart(data)
+    props.dataChart(data);
   }
 
   if (!nw) {

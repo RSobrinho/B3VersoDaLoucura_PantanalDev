@@ -8,6 +8,7 @@ function getNews(url) {
 
   useEffect(() => {
     setLoading(true);
+    console.log(url);
     axios
       .get(url)
       .then((response) => {

@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { AlertSweet, AlertLoading } from "./AlertSweet";
 
 const baseURL = `${process.env.REACT_APP_URL_BACK}/api/v1`;
 
 const TempModal = (props) => {
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  let [startDate, setStartDate] = useState("");
+  let [endDate, setEndDate] = useState("");
+  let dateNow = new Date();
+  dateNow = dateNow.toISOString().slice(0, 10);
 
   async function createPost(init, final) {
     let url = `${baseURL}/scraping`;
@@ -20,8 +23,33 @@ const TempModal = (props) => {
     const init = document.getElementById("in-initial-date").value;
     const final = document.getElementById("in-final-date").value;
 
-    const res = await createPost(init, final);
-    props.modRes(res);
+    let initial_dt = new Date(init);
+    let final_dt = new Date(final);
+
+    if (initial_dt > final_dt) {
+      AlertSweet("Data inicial não pode ser maior que a final!");
+      return null;
+    } else if (final_dt > new Date()) {
+      AlertSweet("Data final não pode sair maior que a data de hoje!");
+      return null;
+    }
+
+    AlertLoading(
+      "Realizando a busca e avaliação das notícias, por favor aguarde!",
+      "Avalições das noticías feitas com sucesso!",
+      "success",
+      5500
+    );
+
+    if (init.toString().length >= 10 && final.toString().length >= 10) {
+      startDate = init;
+      endDate = final;
+      const res = await createPost(init, final);
+      props.modRes(res);
+      return res;
+    }
+
+    return null;
   }
 
   const handleStartDateChange = (event) => {
@@ -32,14 +60,26 @@ const TempModal = (props) => {
     setEndDate(event.target.value);
   };
 
-  const handleButtonClick = () => {
-    toPost();
-    props.switch(1);
-    location.href =
-      "#assessments?initial_date=" +
-      startDate.toString() +
-      "&final_date=" +
-      endDate.toString();
+  const handleButtonClick = async () => {
+    toPost()
+      .then((res) => {
+        if (res) {
+          props.switch(1);
+          location.href =
+            "#assessments?initial_date=" +
+            startDate.toString() +
+            "&final_date=" +
+            endDate.toString();
+        }
+      })
+      .catch((err) => {
+        if (err?.response?.data?.error?.message) {
+          AlertSweet(err?.response?.data?.error?.message);
+        } else {
+          AlertSweet("Houve um erro ao solicitar a busca das notícias!");
+        }
+        return null;
+      });
   };
 
   return (
@@ -65,32 +105,34 @@ const TempModal = (props) => {
               ></button>
             </div>
             <div className="modal-body row text-start">
-              <div className="col-12">
-                <label className="h4">Como fazer</label>
+              <div className="col-12 text-center">
+                <label className="h4">Como Fazer</label>
                 <p>
                   Escolha uma data inicial, depois escolha uma data final e
-                  clique no botão "Adquirir Notícias".
+                  clique no botão "Avaliar Notícias", e serão buscadas e
+                  avaliadas todas as notícias relacionadas B3 nesse período
+                  especificado.
                 </p>
               </div>
 
-              <div className="col-12">
+              <div className="col-12 col-md-6 my-2">
                 <label className="h4">Data Inicial</label>
                 <input
                   id="in-initial-date"
                   type="date"
                   className="form-control"
-                  value={startDate}
+                  value={startDate || dateNow}
                   onChange={handleStartDateChange}
                 />
               </div>
 
-              <div className="col-12">
+              <div className="col-12 col-md-6 my-2">
                 <label className="h4">Data Final</label>
                 <input
                   id="in-final-date"
                   type="date"
                   className="form-control"
-                  value={endDate}
+                  value={endDate || dateNow}
                   onChange={handleEndDateChange}
                 />
               </div>
@@ -101,7 +143,8 @@ const TempModal = (props) => {
                   onClick={handleButtonClick}
                   data-bs-dismiss="modal"
                 >
-                  Adquirir Notícias
+                  Avaliar Notícias &nbsp;
+                  <i className="far fa-search text-default"></i>
                 </button>
               </div>
             </div>

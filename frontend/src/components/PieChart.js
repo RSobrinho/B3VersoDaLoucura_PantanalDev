@@ -3,9 +3,9 @@ import ReactApexChart from "react-apexcharts";
 
 export default function PieChart(props) {
   try {
-    let totalPositivo = 25;
-    let totalNeutro = 25;
-    let totalNegativo = 50;
+    let totalPositivo = 0;
+    let totalNeutro = 0;
+    let totalNegativo = 0;
 
     if (props) {
       totalPositivo = props.totalPositivo;
@@ -14,7 +14,7 @@ export default function PieChart(props) {
     }
 
     const chartData = {
-      series: [totalPositivo || 25, totalNeutro || 25, totalNegativo || 50],
+      series: [totalPositivo || 0, totalNeutro || 0, totalNegativo || 0],
       options: {
         chart: {
           offsetX: 0,
