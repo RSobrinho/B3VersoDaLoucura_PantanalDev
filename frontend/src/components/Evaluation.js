@@ -108,7 +108,7 @@ export default (props) => {
       </div>
 
       <NewsTable data={dataTable} />
-      <GraphModal title="title" txt="content" />
+      <GraphModal title="initial_date" txt="final_date" init = {initial_date} final = {final_date}/>
     </div>
   );
 };

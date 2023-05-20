@@ -24,8 +24,8 @@ export default (props) => {
           </div>
           <div className="modal-body">
             <h1>XXXX Notícias foram avaliadas</h1>
-            <p>Data inicial: XX/XX/XXXX</p>
-            <p>Data final: XX/XX/XXXX</p>
+            <p>Data inicial: {props.init}</p>
+            <p>Data final: {props.final}</p>
 
             <div className="d-flex align-items-center justify-content-between">
               <div style={{ display: "flex", flexDirection: "column" }}>
@@ -36,7 +36,7 @@ export default (props) => {
                 </div>
                 <div>
                   <i className="fas fa-circle text-warning m-2"></i>
-                  <span className="lead">12.3& Neutras</span>
+                  <span className="lead">12.3% Neutras</span>
                   <p>140 notícias positivas</p>
                 </div>
                 <div>
