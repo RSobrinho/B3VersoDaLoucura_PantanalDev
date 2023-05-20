@@ -4,7 +4,6 @@ import "./public/css/index.css";
 import reportWebVitals from "./reportWebVitals";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
-import NewsModal from "./components/NewsModal";
 import SpaceOfTimeModal from "./components/SpaceOfTimeModal";
 import { getPage } from "./components/page";
 
@@ -15,9 +14,7 @@ root.render(
   <React.StrictMode>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <Main page={pg} />
-    <NewsModal />
     <Footer />
-    <SpaceOfTimeModal page={1}/>
   </React.StrictMode>
 );
 

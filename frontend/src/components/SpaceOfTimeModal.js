@@ -24,10 +24,6 @@ const TempModal = (props) => {
 
     const res = await createPost(init, final);
     props.modRes(res);
-
-    // Test purposes
-    console.log("Printing data from request...");
-    console.log(res);
   }
 
   const handleStartDateChange = (event) => {

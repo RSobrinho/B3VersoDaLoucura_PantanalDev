@@ -1,10 +1,7 @@
 import React from "react";
 import img from "../public/logo-b3.png";
-import { alterPage } from "./page";
 
 export default (props) => {
-  const [page, setPage] = React.useState(props.page);
-
   return (
     <React.Fragment>
       <header>

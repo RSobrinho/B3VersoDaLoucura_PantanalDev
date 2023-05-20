@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 import { Modal } from "bootstrap";
 import env from "react-dotenv";
@@ -6,8 +6,6 @@ import env from "react-dotenv";
 const baseURL = `${env.URL_BACK}:${env.PORT_BACK}/api/v1`;
 
 export default () => {
-  const [post, setPost] = useState(null);
-
   async function createPost(link) {
     const response = await axios.post(`${baseURL}/scraping`, {
       link,
@@ -17,30 +15,53 @@ export default () => {
 
   async function toPost() {
     const link = document.getElementById("input-link").value;
-
     const res = await createPost(link);
+
     // Test porpuses
     console.log("Printing data from request...");
     console.log(res);
     console.log("End of data.");
 
-    setPost(res);
+    const NewsModal = document.getElementById("news-modal");
 
-    const exampleModal = document.getElementById("news-modal");
+    if (NewsModal) {
+      NewsModal.addEventListener("show.bs.modal", () => {
+        const title = NewsModal.querySelector("#title-news");
+        const content = NewsModal.querySelector("#content-news");
+        const link = NewsModal.querySelector("#link-news");
+        const date = NewsModal.querySelector("#date-news");
+        const dt = new Date(res.scraping.news.date);
+        const sentiment_news = NewsModal.querySelector("#sentiment-news");
+        const sentiment_color_news = NewsModal.querySelector(
+          "#sentiment-color-news"
+        );
 
-    if (exampleModal) {
-      exampleModal.addEventListener("show.bs.modal", (event) => {
-        const button = event.relatedTarget;
-        const title = exampleModal.querySelector("#title-news");
-        const content = exampleModal.querySelector("#content-news");
-        const link = exampleModal.querySelector("#link-news");
-        const date = exampleModal.querySelector("#date-news");
-        const dt = res.scraping.news.date;
+        const getSentiment = () => {
+          if (res.scraping.news.sentiment.positive == 100)
+            return ["text-success", "Positivo"];
+          else if (res.scraping.news.sentiment.neutral == 100)
+            return ["text-warning", "Neutro"];
+          return ["text-danger", "Negativo"];
+        };
+        const sentiment = getSentiment();
 
         title.textContent = res.scraping.news.title;
         content.textContent = res.scraping.news.description;
         link.href = res.scraping.link;
-        date.textContent = dt.slice(0, 2);
+        sentiment_news.textContent = sentiment[1];
+        sentiment_color_news.classList.remove("text-success");
+        sentiment_color_news.classList.remove("text-warning");
+        sentiment_color_news.classList.remove("text-danger");
+        sentiment_color_news.classList.add(sentiment[0]);
+
+        function pad(s) {
+          return s < 10 ? "0" + s : s;
+        }
+        date.textContent = [
+          pad(dt.getDate()),
+          pad(dt.getMonth() + 1),
+          dt.getFullYear(),
+        ].join("/");
       });
 
       const myModal = new Modal("#news-modal", {
