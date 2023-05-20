@@ -2,12 +2,12 @@ import React from "react";
 import ReactApexChart from "react-apexcharts";
 
 export default function PieChart(props) {
-  let totalPositivo, totalNeutro, totalNegativo
-  
-  if(props){
-    totalPositivo = props.totalPositivo
-    totalNegativo = props.totalNegativo
-    totalNeutro = props.totalNeutro
+  let totalPositivo, totalNeutro, totalNegativo;
+
+  if (props) {
+    totalPositivo = props.totalPositivo;
+    totalNegativo = props.totalNegativo;
+    totalNeutro = props.totalNeutro;
   }
   const chartData = {
     series: [totalPositivo, totalNeutro, totalNegativo],
@@ -15,13 +15,13 @@ export default function PieChart(props) {
       chart: {
         offsetX: 0,
         width: 400,
-        type: 'pie',
+        type: "pie",
         formatter: function (val) {
           return parseInt(val); // Convert float to integer
         },
       },
-      labels: ['Positivo', 'Neutro', 'Negativo'],
-      colors: ['#54B435', '#FFD93D', '#D21312'],
+      labels: ["Positivo", "Neutro", "Negativo"],
+      colors: ["#54B435", "#FFD93D", "#D21312"],
       responsive: [
         {
           breakpoint: 480,
@@ -30,7 +30,7 @@ export default function PieChart(props) {
               width: "100%",
             },
             legend: {
-              position: 'bottom',
+              position: "bottom",
             },
           },
         },
@@ -39,8 +39,8 @@ export default function PieChart(props) {
   };
 
   return (
-    <div style={{ textAlign: 'right' }}>
-      <div style={{ display: 'inline-block', textAlign: 'left' }}>
+    <div style={{ textAlign: "right" }}>
+      <div style={{ display: "inline-block", textAlign: "left" }}>
         <ReactApexChart
           options={chartData.options}
           series={chartData.series}
@@ -52,5 +52,3 @@ export default function PieChart(props) {
     </div>
   );
 }
-
-

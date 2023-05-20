@@ -9,7 +9,6 @@ const TempModal = (props) => {
 
   async function createPost(init, final) {
     let url = `${baseURL}/scraping`;
-    console.log(url);
     const response = await axios.post(`${baseURL}/scraping`, {
       initial_date: init,
       final_date: final,

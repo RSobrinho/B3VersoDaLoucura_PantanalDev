@@ -16,11 +16,6 @@ export default () => {
     const link = document.getElementById("input-link").value;
     const res = await createPost(link);
 
-    // Test porpuses
-    console.log("Printing data from request...");
-    console.log(res);
-    console.log("End of data.");
-
     const NewsModal = document.getElementById("news-modal");
 
     if (NewsModal) {

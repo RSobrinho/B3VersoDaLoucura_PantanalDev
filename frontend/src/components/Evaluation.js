@@ -110,11 +110,20 @@ export default (props) => {
         </div>
       </div>
 
-      
       <div id="table-news" className="table-responsive tb-default py-2">
-        <NewsTable data={dataTable} dataChart={(news) => setDataChart(news)} chart = {dataChart}/>
+        <NewsTable
+          data={dataTable}
+          dataChart={(news) => setDataChart(news)}
+          chart={dataChart}
+        />
       </div>
-        <GraphModal news={dataChart} title="initial_date" txt="final_date" init = {initial_date} final = {final_date}/>
-      </div>
+      <GraphModal
+        news={dataChart}
+        title="initial_date"
+        txt="final_date"
+        init={initial_date}
+        final={final_date}
+      />
+    </div>
   );
 };
