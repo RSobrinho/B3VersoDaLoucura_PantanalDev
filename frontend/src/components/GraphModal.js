@@ -4,6 +4,26 @@ import PieChart from "./PieChart";
 import DashedChart from "./DashedChart";
 
 export default (props) => {
+  
+  let totalPositivo;
+  let totalNeutro;
+  let totalNegativo;
+  let porcentagemNegativo;
+  let porcentagemNeutro;
+  let porcentagemPositivo;
+  let total;
+
+  if(props && props.news){
+    console.log(props.news)
+    totalPositivo = props.news.sentiment_totals[2].quantity
+    totalNeutro = props.news.sentiment_totals[1].quantity
+    totalNegativo = props.news.sentiment_totals[0].quantity
+    porcentagemPositivo = props.news.sentiment_totals[2].percentage
+    porcentagemNeutro = props.news.sentiment_totals[1].percentage
+    porcentagemNegativo = props.news.sentiment_totals[0].percentage
+    total = props.news.total
+  }
+
   return (
     <div
       className="modal fade"
@@ -23,30 +43,30 @@ export default (props) => {
             ></button>
           </div>
           <div className="modal-body">
-            <h1>XXXX Notícias foram avaliadas</h1>
-            <p>Data inicial: {props.init}</p>
-            <p>Data final: {props.final}</p>
+            <h1>{total} Notícias foram avaliadas</h1>
+            {/* <p>Data inicial: {props.init}</p>
+            <p>Data final: {props.final}</p> */}
 
             <div className="d-flex align-items-center justify-content-between">
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <div>
                   <i className="fas fa-circle text-success m-2"></i>
-                  <span className="lead">61.4% Positivas</span>
-                  <p>700 notícias positivas</p>
+                  <span className="lead">{porcentagemPositivo}% Positivas</span>
+                  <p>{totalPositivo} notícias positivas</p>
                 </div>
                 <div>
                   <i className="fas fa-circle text-warning m-2"></i>
-                  <span className="lead">12.3% Neutras</span>
-                  <p>140 notícias positivas</p>
+                  <span className="lead">{porcentagemNeutro}% Neutras</span>
+                  <p>{totalNeutro} notícias neutras</p>
                 </div>
                 <div>
                   <i className="fas fa-circle text-danger m-2"></i>
-                  <span className="lead">26.3% Negativas</span>
-                  <p>300 notícias positivas</p>
+                  <span className="lead">{porcentagemNegativo}% Negativas</span>
+                  <p>{totalNegativo} notícias negativas</p>
                 </div>
               </div>
               <div>
-                <PieChart />
+                <PieChart totalPositivo={totalPositivo} totalNegativo={totalNegativo} totalNeutro={totalNeutro}/>
               </div>
             </div>
 

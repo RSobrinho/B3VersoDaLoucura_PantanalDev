@@ -1,17 +1,27 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 
-export default function PieChart() {
+export default function PieChart(props) {
+  let totalPositivo, totalNeutro, totalNegativo
+  
+  if(props){
+    totalPositivo = props.totalPositivo
+    totalNegativo = props.totalNegativo
+    totalNeutro = props.totalNeutro
+  }
   const chartData = {
-    series: [300, 140, 700],
+    series: [totalPositivo, totalNeutro, totalNegativo],
     options: {
       chart: {
         offsetX: 0,
         width: 400,
         type: 'pie',
+        formatter: function (val) {
+          return parseInt(val); // Convert float to integer
+        },
       },
-      labels: ['Negativo', 'Neutro', 'Positivo'],
-      colors: ['#D21312', '#FFD93D', '#54B435'],
+      labels: ['Positivo', 'Neutro', 'Negativo'],
+      colors: ['#54B435', '#FFD93D', '#D21312'],
       responsive: [
         {
           breakpoint: 480,
@@ -35,6 +45,7 @@ export default function PieChart() {
           options={chartData.options}
           series={chartData.series}
           type="pie"
+          dataLabels="int"
           width={450}
         />
       </div>

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import Evaluation from "./Evaluation";
 import Header from "./Header";
 import Search from "./Search";
-import { getPage } from "./page";
 import SpaceOfTimeModal from "./SpaceOfTimeModal";
 import "../public/fontawesome/css/all.css";
+import NewsModal from "./NewsModal";
 
 function Main(props) {
   const [page, setPage] = useState(props.page);
@@ -26,6 +26,7 @@ function Main(props) {
     <>
       <Header switch={(num) => setPage(num)} />
 
+      <NewsModal />
       <SpaceOfTimeModal
         modRes={(data) => setRes(data)}
         switch={(num) => setPage(num)}

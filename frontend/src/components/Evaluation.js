@@ -7,10 +7,11 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import env from "react-dotenv";
 import { getQueryParams } from "./page";
+import $ from "jquery";
 
 export default (props) => {
+  let [dataChart, setDataChart] = React.useState(null);
   let [dataTable, setDataTable] = React.useState(null);
-
   const urlParams = getQueryParams(window.location.href);
   let initial_date = "";
   let final_date = "";
@@ -32,8 +33,10 @@ export default (props) => {
     if (init && final) {
       let link = window.location.href;
       link = link.split("?")[0];
-      props.switch(1);
-      location.href = `${link}?initial_date=${init}&final_date=${final}`;
+      const url = `${link}?initial_date=${init}&final_date=${final}`;
+      window.location.href = url;
+      setDataTable({ initial_date: init, final_date: final });
+      document.location.reload();
     }
   };
 
@@ -107,8 +110,11 @@ export default (props) => {
         </div>
       </div>
 
-      <NewsTable data={dataTable} />
-      <GraphModal title="initial_date" txt="final_date" init = {initial_date} final = {final_date}/>
-    </div>
+      
+      <div id="table-news" className="table-responsive tb-default py-2">
+        <NewsTable data={dataTable} dataChart={(news) => setDataChart(news)} chart = {dataChart}/>
+      </div>
+        <GraphModal news={dataChart} title="initial_date" txt="final_date" init = {initial_date} final = {final_date}/>
+      </div>
   );
 };

@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
+import env from "react-dotenv";
 
-const baseURL = "//localhost:8082/api/v1";
+const baseURL = `${env.URL_BACK}:${env.PORT_BACK}/api/v1`;
 
 const TempModal = (props) => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
   async function createPost(init, final) {
+    let url = `${baseURL}/scraping`;
+    console.log(url);
     const response = await axios.post(`${baseURL}/scraping`, {
       initial_date: init,
       final_date: final,
@@ -21,10 +24,6 @@ const TempModal = (props) => {
 
     const res = await createPost(init, final);
     props.modRes(res);
-
-    // Test purposes
-    console.log("Printing data from request...");
-    console.log(res);
   }
 
   const handleStartDateChange = (event) => {

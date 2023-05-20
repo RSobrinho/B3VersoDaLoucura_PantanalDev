@@ -81,18 +81,21 @@ export default () => {
               </div>
               <div className="col-12 h4 d-flex align-items-center gap-3">
                 <label>
-                  Data notícia:
+                  Data da notícia:
+                  <span>&nbsp;</span>
                   <span id="date-news" className="fw-normal">01/05/2023</span>
                 </label>
               </div>
               <div className="col-12">
-                <label className="h4">Sentimento</label>
-                <div className="d-flex gap-2 align-items-center">
+                <label className="h4">Sentimento predito:</label>
+                <div className="d-inline-flex gap-2">
+                <span>&nbsp;</span>
                   <a
                     href="#"
                     className="text-decoration-none h5 fw-medium text-dark"
                   >
                     <i id="sentiment-color-news" className="fas fa-circle text-success"></i>
+                    <span>&nbsp;</span>
                     <span id="sentiment-news">Positivo</span>
                   </a>
                 </div>
