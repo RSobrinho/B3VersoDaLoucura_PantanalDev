@@ -10,7 +10,7 @@ const TempModal = (props) => {
   async function createPost(init, final) {
     const response = await axios.post(`${baseURL}/scraping`, {
       initial_date: init,
-      final_date: final
+      final_date: final,
     });
     return response.data;
   }
@@ -21,10 +21,6 @@ const TempModal = (props) => {
 
     const res = await createPost(init, final);
     props.modRes(res);
-
-    // Test purposes
-    console.log("Printing data from request...");
-    console.log(res);
   }
 
   const handleStartDateChange = (event) => {
@@ -38,7 +34,11 @@ const TempModal = (props) => {
   const handleButtonClick = () => {
     toPost();
     props.switch(1);
-    location.href = "#assessments?initial_date=" + startDate.toString() + "&final_date=" + endDate.toString();
+    location.href =
+      "#assessments?initial_date=" +
+      startDate.toString() +
+      "&final_date=" +
+      endDate.toString();
   };
 
   return (
@@ -75,18 +75,18 @@ const TempModal = (props) => {
               <div className="col-12">
                 <label className="h4">Data Inicial</label>
                 <input
-                id="in-initial-date"
+                  id="in-initial-date"
                   type="date"
                   className="form-control"
                   value={startDate}
                   onChange={handleStartDateChange}
                 />
               </div>
-              
+
               <div className="col-12">
                 <label className="h4">Data Final</label>
                 <input
-                id="in-final-date"
+                  id="in-final-date"
                   type="date"
                   className="form-control"
                   value={endDate}
